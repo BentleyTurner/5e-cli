@@ -14,10 +14,7 @@ import (
 var ROLL_RANGE_CEILINGS = map[int]func() error{
 	1:   func() error { log.Println("Reroll and upgrade result with +1 colour!"); return nil },
 	8:   wondrous,
-	15:  func() error { log.Printf("Soul gem: %s", GEM_TAGS[rand.Intn(len(GEM_TAGS))]); return nil },
-	22:  func() error { log.Printf("Crystal: %s", CREATURE_TYPES[rand.Intn(len(CREATURE_TYPES))]); return nil },
 	29:  magicItem,
-	36:  belt,
 	43:  ring,
 	50:  amulet,
 	57:  shrine,
@@ -26,9 +23,8 @@ var ROLL_RANGE_CEILINGS = map[int]func() error{
 	78:  func() error { log.Println("2x Tarot Cards"); return nil },
 	85:  relic,
 	92:  func() error { log.Println("Dream Mirror"); return nil },
-	99:  func() error { log.Println("Glyph"); return nil },
-	100: func() error { log.Println("Player's choice!"); return nil },
-}
+	100:  func() error { log.Println("Glyph"); return nil },
+} 	
 
 var COMMAND_MAP = map[string]func() error{
 	"exit":          func() error { os.Exit(0); return nil },
