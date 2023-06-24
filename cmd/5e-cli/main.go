@@ -12,10 +12,10 @@ import (
 )
 
 var ROLL_RANGE_CEILINGS = map[int]func() error{
-	1:  lowgold,
+	1:  lowGold,
 	2:  magicItem,
-	3:  mediumgold,
-	4:  mediumgold,
+	3:  mediumGold,
+	4:  mediumGold,
 	5:  amulet,
 	6:  ring,
 	7:  shrine,
