@@ -12,17 +12,15 @@ import (
 )
 
 var ROLL_RANGE_CEILINGS = map[int]func() error{
-	1:   func() error { log.Println("Reroll and upgrade result with +1 colour!"); return nil },
-	8:   wondrous,
-	29:  magicItem,
-	43:  ring,
-	50:  amulet,
-	57:  shrine,
-	64:  body,
-	71:  tome,
-	78:  func() error { log.Println("2x Tarot Cards"); return nil },
-	85:  relic,
-	92:  func() error { log.Println("Dream Mirror"); return nil },
+	1:  lowgold,
+	2:  magicItem,
+	3:  mediumgold,
+	4:  mediumgold,
+	5:  amulet,
+	6:  ring,
+	7:  shrine,
+	8:  relic,
+	9:  func() error { log.Println("Dream Mirror"); return nil },
 	100:  func() error { log.Println("Glyph"); return nil },
 } 	
 
