@@ -21,7 +21,7 @@ var ROLL_RANGE_CEILINGS = map[int]func() error{
 	7:  shrine,
 	8:  relic,
 	9:  func() error { log.Println("Dream Mirror"); return nil },
-	100:  func() error { log.Println("Glyph"); return nil },
+	10:  func() error { log.Println("Glyph"); return nil },
 } 	
 
 var COMMAND_MAP = map[string]func() error{
