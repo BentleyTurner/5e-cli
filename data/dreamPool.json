@@ -1,0 +1,49 @@
+{
+    "Thaddeus": [
+        {
+            "description": "Whenever the target of your Shield of Faith is hit by a melee attack, the attacker takes rad spell dmg equal to triple your bonus outgoing healing",
+            "pointValue": "1",
+            "upgrade": "+1 outgoing healing/1"
+        },
+        {
+            "description": "The bonus AC for upcasting your Shield of Faith is increased by 2. Additionally, it needs 2 fewer slot levels per upcast bonus.",
+            "pointValue": "4",
+            "upgrade": "+1 AC/1"
+        },
+        {
+            "description": "Your Shield of Faith no longer requires concentration.",
+            "pointValue": "3",
+            "upgrade": "+1 duration step for Shield of Faith/1"
+        }
+    ],
+    "Zacharias": [],
+    "Siggusmondo": [
+        {
+            "description": "The first time in a turn a creature fails a saving throw from you, you may trigger your Gathered Swarm.",
+            "pointValue": "2",
+            "upgrade": "+1 to your ongoing debuff DCs/4"
+        },
+        {
+            "description": "Whenever your Gathered Swarm moves you, you may be moved up to 5' further",
+            "pointValue": "2",
+            "upgrade": "+5'/2"
+        },
+        {
+            "description": "+1 to the DC of your Gathered Swarm",
+            "pointValue": "3",
+            "upgrade": "+1/3"
+        }
+    ],
+    "Vehemir": [
+        {
+            "description": "Your Speak with Animals now lasts 8 hours",
+            "pointValue": "1",
+            "upgrade": "+1 duration step/1"
+        },
+        {
+            "description": "Allies can Help you with animal handling checks you make with beasts you are communicating with via Speak with Animals",
+            "pointValue": "1",
+            "upgrade": "+4 to these Helped animal handling checks/1"
+        }
+    ]
+}

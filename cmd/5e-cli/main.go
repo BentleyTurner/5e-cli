@@ -6,30 +6,32 @@ import (
 	"os"
 	"sort"
 	"strconv"
-	"time"
 
 	"github.com/manifoldco/promptui"
 )
 
 var ROLL_RANGE_CEILINGS = map[int]func() error{
-	1:  lowGold,
-	2:  magicItem,
-	3:  mediumGold,
-	4:  mediumGold,
-	5:  amulet,
-	6:  ring,
-	7:  shrine,
-	8:  relic,
-	9:  func() error { log.Println("Dream Mirror"); return nil },
-	10:  func() error { log.Println("Glyph"); return nil },
-} 	
+	11:  func() error { log.Println("Reroll and upgrade result with +1 colour!"); return nil },
+	19:  mediumGold,
+	27:  shrine,
+	35:  func() error { log.Printf("Crystal: %s", CREATURE_TYPES[rand.Intn(len(CREATURE_TYPES))]); return nil },
+	43:  magicItem,
+	51:  tome,
+	59:  amulet,
+	67:  ring,
+	75:  func() error { log.Println("2x Tarot Cards"); return nil },
+	83:  relic,
+	91:  func() error { log.Println("Dream Mirror"); return nil },
+	99:  func() error { log.Println("Glyph"); return nil },
+	100: func() error { log.Println("Player's choice and upgrade result with +1 colour!"); return nil },
+}
 
 var COMMAND_MAP = map[string]func() error{
 	"exit":          func() error { os.Exit(0); return nil },
 	"q":             func() error { os.Exit(0); return nil },
 	"colour":        colour,
-	"wep":           weaponEnchant,
-	"arm":           armourEnchant,
+	"wep":           weaponAffix,
+	"arm":           armourAffix,
 	"glyph":         glyph,
 	"relic":         upgradeRelic,
 	"skill":         skill,
@@ -39,7 +41,6 @@ var COMMAND_MAP = map[string]func() error{
 	"loot":          loot,
 	"harvest":       harvest,
 	"condi":         condition,
-	"mutate":        mutation,
 	"encounter":     randomEncounter,
 	"insight":       insight,
 	"dmg polarity":  dmgPolarity,
@@ -50,11 +51,8 @@ var COMMAND_MAP = map[string]func() error{
 	"weapon class":  weaponClass,
 	"phys type":     physType,
 	"non-phys type": nonPhysType,
-	"challenge":     challenge,
 	"class":         class,
 	"tarot":         tarot,
-	"gem":           gem,
-	"tag":           tag,
 	"craft":         craft,
 	"target craft":  targetCraft,
 	"dmg upgrade":   dmgUpgrade,
@@ -62,7 +60,6 @@ var COMMAND_MAP = map[string]func() error{
 	"amulet":        amulet,
 	"relic new":     relic,
 	"chaos":         chaos,
-	"wondrous":      wondrous,
 	"ring":          ring,
 	"combat":        combat,
 	"travel":        travel,
@@ -72,11 +69,20 @@ var COMMAND_MAP = map[string]func() error{
 	"martial wep":   martialWeapon,
 	"posi enc":      posiEnc,
 	"language":      language,
+	"dream":         dream,
+	"plane":         plane,
+	"perk":          perk,
+	"mutate":        mutate,
+	"follower":      follower,
+	"mission":       mission,
+	"affinity":      affinity,
+	"trait":         weaponTrait,
+	"mag":           magicItem,
+	"ring upgrade":  ringUpgrade,
 }
 
 func main() {
 	log.SetFlags(log.Flags() &^ (log.Ldate | log.Ltime))
-	rand.Seed(time.Now().UnixNano())
 
 	for {
 		log.Println()

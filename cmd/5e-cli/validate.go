@@ -18,6 +18,13 @@ var validateBase = func(input string) error {
 	return nil
 }
 
+var validateRingStone = func(input string) error {
+	if valid := slices.Contains(RING_STONES, input); !valid {
+		return errors.New("invalid ring stone")
+	}
+	return nil
+}
+
 var validateActivity = func(input string) error {
 	if valid := slices.Contains(JOURNEY_ACTIVITIES, input); !valid {
 		return errors.New("invalid journey activity")
@@ -49,13 +56,6 @@ var validateGem = func(input string) error {
 	return nil
 }
 
-var validateMutationType = func(input string) error {
-	if valid := slices.Contains(MUTATION_TYPES, input); !valid {
-		return errors.New("invalid mutation type")
-	}
-	return nil
-}
-
 var validateSpaceSeparated = func(input string) error {
 	validator := regexp.MustCompile(`^[\w\s]+$`)
 	if !validator.MatchString(input) {
@@ -81,6 +81,13 @@ var validateFloat = func(input string) error {
 var validateTarotCard = func(input string) error {
 	if valid := slices.Contains(TAROT_CARDS, input); !valid {
 		return errors.New("invalid tarot card")
+	}
+	return nil
+}
+
+var validatePartyMember = func(input string) error {
+	if valid := slices.Contains(PARTY_MEMBERS, input); !valid {
+		return errors.New("invalid party member")
 	}
 	return nil
 }

@@ -3,16 +3,13 @@ package main
 var COLOUR_UPGRADE_DESCRIPTIONS map[string]string = map[string]string{
 	"wondrous":  "Wondrous: +1 adv on rarity",
 	"tarot":     "Tarot: +1 card draw",
-	"gem":       "Soul gem: +1 adv on tag",
 	"amulet":    "Amulet: +1 adv on set",
 	"equipment": "Equipment: +1 upgrade point",
-	"ring":      "Ring: +1 adv on rarity",
+	"ring":      "Ring: +1 option on upgrading with this ring (or +1 adv on this ring's stone)",
 	"shrine":    "Shrine: +1 reroll of proposed outcome",
-	"body":      "Body: +1 adv",
-	"tome":      "Tome: +1 adv",
-	"mirror":    "Dream Mirror: +1 customisation option",
+	"tome":      "Tome: +1 adv on applicable powers",
+	"mirror":    "Dream Mirror: +1 upgrade point on either new mod or upgrade/reroll",
 	"glyph":     "Glyph: Counts as +1 glyph",
-	"belt":      "Belt: +1 adv on base activity",
 	"crystal":   "Crystal: +1 adv on creature type",
 	"gold":      "Gold: +50%",
 }
@@ -111,6 +108,7 @@ var WEAPON_CLASSES []string = []string{
 	"pick",
 	"hammer",
 	"shield",
+	"trap",
 }
 
 var SKILLS []string = []string{
@@ -141,25 +139,25 @@ var DAMAGE_POLARITIES []string = []string{
 }
 
 var PARTY_MEMBERS []string = []string{
-	"Adrian",
-	"Dekel",
-	"Bentley",
-	"Dan",
+	"Thaddeus",
+	"Zacharias",
+	"Siggusmondo",
+	"Vehemir",
 }
 
 var CITIES []string = []string{
-	"Ely",
-	"Aramore",
-	"Hollyhead",
-	"Aeston City",
+	"Holmfirth",
+	"Calcheth",
+	"Erostey",
+	"Oakheart",
 }
 
 var INSIGHTS map[string]int = map[string]int{
-	"Fillipo":    5,
-	"Eva":        9,
-	"Vinton":     -1,
-	"Tymm":       7,
-	"Marguerita": 1,
+	"Thaddeus":    9,
+	"Zacharias":   1,
+	"Siggusmondo": 6,
+	"Vehemir":     5,
+	"Sidekick":    0,
 }
 
 var LIGHT_TYPES []string = []string{
@@ -168,27 +166,28 @@ var LIGHT_TYPES []string = []string{
 }
 
 var CONDITIONS []string = []string{
-	"blind",
-	"charm",
-	"deaf",
-	"frighten",
-	"grapple",
-	"daze",
+	"blinded",
+	"charmed",
+	"deafened",
+	"frightened",
+	"grappled",
+	"dazed",
 	"invisible",
-	"stagger",
-	"petrify",
-	"poison",
+	"staggered",
+	"petrified",
+	"poisoned",
 	"prone",
-	"restrain",
-	"debilitate",
+	"restrained",
+	"debilitated",
 	"unconscious",
 	"fatigue",
 	"strife",
 	"sluggish",
-	"dominate",
-	"rattle",
-	"taunt",
-	"confuse",
+	"dominated",
+	"rattled",
+	"taunted",
+	"confused",
+	"slowed",
 }
 
 var AOE_SHAPES []string = []string{
@@ -263,6 +262,13 @@ var WEAPON_TRAITS []string = []string{
 	"simple",
 	"martial",
 	"reach",
+	"restraining",
+	"delayed",
+	"deployed (20')",
+	"engineered",
+	"explosive",
+	"triggered (attack the triggering creature with this weapon)",
+	"paired (this weapon's damage die size increases by 1)",
 }
 
 var SIZE_DIFFERENCES []string = []string{
@@ -285,13 +291,6 @@ var ENEMY_ARMOUR_FORMS []string = []string{
 var RANGE_TYPES []string = []string{
 	"melee",
 	"proj",
-}
-
-var MUTATION_TYPES []string = []string{
-	"powerful",
-	"beneficial",
-	"distinctive",
-	"harmful",
 }
 
 var RACES []string = []string{
@@ -370,8 +369,8 @@ var EQUIP_SLOTS []string = []string{
 	"onhand",
 	"offhand",
 	"helmet",
+	"body",
 	"gloves",
-	"pants",
 	"boots",
 }
 
@@ -392,18 +391,18 @@ var JOURNEY_ACTIVITIES []string = []string{
 
 var ACTIVITY_RESULTS map[string]map[string]string = map[string]map[string]string{
 	"befriend": {
-		"crit fail": "Trigger a monstrous hostile encounter, adding an additional hostile beast of CR [Lvl/3].",
-		"sub fail":  "Trigger a monstrous hostile encounter.",
+		"crit fail": "Lose 2d4*Lvl hit points, and party gets +1 fatigue.",
+		"sub fail":  "Lose 2d4*Lvl hit points and gain +1 fatigue.",
 		"fail":      "No effect.",
-		"succ":      "On init for your next hostile encounter, increase your temp HP by 1.",
-		"sub succ":  "Gain a random beast minion of CR [Lvl/3]. On repeat, it gains +1 AB and AC, and +[Lvl] max HP.",
-		"crit succ": "Gain a random beast minion of CR [Lvl/3]. On repeat, it gains +1 AB and AC, and +[Lvl] max HP. Additionally, gain a Boon.",
+		"succ":      "Befriend wild animal, +1 Perk Point.",
+		"sub succ":  "Befriend wild animal and +1 Perk Point, or +2 Perk Points.",
+		"crit succ": "Befriend wild animal and +1 Perk Point, or +2 Perk Points. Also, Boon.",
 	},
 	"busk": {
-		"crit fail": "Lose 5 + 1d4gp. If you cannot afford, +1 strife.",
-		"sub fail":  "Lose 1d4gp. If you cannot afford, +1 strife.",
+		"crit fail": "Party gets +1 strife.",
+		"sub fail":  "Gain +1 strife.",
 		"fail":      "No effect.",
-		"succ":      "Gain 1d4gp.",
+		"succ":      "+1d4gp.",
 		"sub succ":  "Gain 1d4gp + 2gp for each point their check beat the DC by.",
 		"crit succ": "Gain 1d4gp + 2gp for each point their check beat the DC by. Also, gain a loot roll.",
 	},
@@ -427,61 +426,61 @@ var ACTIVITY_RESULTS map[string]map[string]string = map[string]map[string]string
 		"crit fail": "Roll d20. On odd, party gets +1 fatigue. On even, party gets +1 strife.",
 		"sub fail":  "Roll d20. On odd, +1 fatigue. On even, +1 strife.",
 		"fail":      "No effect.",
-		"succ":      "Roll d3. Gain [construct, elemental, ooze] minion of CR [Lvl/4]. On repeat, minion gains +[Lvl] max HP.",
-		"sub succ":  "Roll d3. Gain [construct, elemental, ooze] minion of CR [Lvl/4] which has +[Lvl] max HP. On repeat, roll d4, giving minion [+2 AB, +2 AC, +4 global dmg, +3 to saves].",
-		"crit succ": "Roll d3. Gain [construct, elemental, ooze] minion of CR [Lvl/4] + 1. On repeat, minion gains +[Lvl] max HP and is rerolled within its type 1 CR higher.",
+		"succ":      "Gain created being, or +1 Perk Point.",
+		"sub succ":  "Gain created being and +1 Perk Point, or +2 Perk Points.",
+		"crit succ": "Gain created being and +1 Perk Point, or +2 Perk Points. Also, created being gets +1 dmg.",
 	},
 	"gather": {
-		"crit fail": "Trigger hostile encounter.",
-		"sub fail":  "Party has disadv Offence during 1st rnd of next hostile encounter.",
+		"crit fail": "Incoming atks and DCs have +1 during first round of next hostile encounter, and party gets +1 strife.",
+		"sub fail":  "Incoming atks and DCs have +1 during first round of next hostile encounter, and +1 strife.",
 		"fail":      "No effect.",
-		"succ":      "+1 Minor Metamagic point to a party member.",
-		"sub succ":  "+1 Moderate Metamagic point to a party member.",
-		"crit succ": "+1 Moderate Metamagic point to each party member.",
+		"succ":      "+1 Perk Point.",
+		"sub succ":  "+2 Perk Points.",
+		"crit succ": "+2 Perk Points and get -1 fatigue and strife.",
 	},
 	"gossip": {
 		"crit fail": "Party gets +1 strife.",
 		"sub fail":  "+1 strife.",
 		"fail":      "No effect.",
-		"succ":      "+20% chance to prevent next hostile encounter. Alternatively, +1 to next knowledge check.",
-		"sub succ":  "+40% chance to prevent next hostile encounter. Alternatively, each party member gains +1 to next knowledge check.",
-		"crit succ": "+40% chance to prevent next hostile encounter. Alternatively, each party member gains +1 to next knowledge check. Also, gain a Boon.",
+		"succ":      "+1 Perk Points.",
+		"sub succ":  "+2 Perk Points.",
+		"crit succ": "+2 Perk Points and a Boon.",
 	},
 	"harvest": {
 		"crit fail": "Party gets +1 fatigue.",
 		"sub fail":  "+1 fatigue.",
 		"fail":      "No effect.",
-		"succ":      "+1 healing for your next stabilising Medicine check.",
-		"sub succ":  "T1 healing potion.",
-		"crit succ": "T3 healing potion.",
+		"succ":      "+1 Perk Point.",
+		"sub succ":  "+2 Perk Points.",
+		"crit succ": "+2 Perk Points and a loot roll.",
 	},
 	"pray": {
-		"crit fail": "Trigger hostile encounter, with foes favoured by the deity.",
-		"sub fail":  "Deity's curse.",
+		"crit fail": "Deity's major curse.",
+		"sub fail":  "Deity's minor curse.",
 		"fail":      "No effect.",
 		"succ":      "Deity's minor blessing.",
 		"sub succ":  "Deity's major blessing.",
 		"crit succ": "Deity's major blessing. Also, gain a Boon.",
 	},
 	"rob": {
-		"crit fail": "Copy party and turn them into a hostile encounter.",
-		"sub fail":  "Trigger humanoid hostile encounter.",
+		"crit fail": "-1 loot rolls from next organ turn-in.",
+		"sub fail":  "+1 lvl of disadvantage on next positive random encounter, or +33% chance to not participate if no rolls.",
 		"fail":      "No effect.",
 		"succ":      "Gain 2d4gp.",
 		"sub succ":  "Gain 10 + 2d4gp.",
 		"crit succ": "Gain 10 + 2d4gp. Also, gain a loot roll.",
 	},
 	"scout": {
-		"crit fail": "+1 fatigue and each party member has disadv on their next hostile encounter init roll.",
+		"crit fail": "Party gets +1 fatigue.",
 		"sub fail":  "+1 fatigue.",
 		"fail":      "No effect.",
-		"succ":      "Each party member gets +1 to their next hostile encounter init roll.",
-		"sub succ":  "Each party member gets +1 to their next hostile encounter init roll. Also, if no party members are surprised in that combat, each foe has +10% chance to be surprised.",
-		"crit succ": "Positive random encounter.",
+		"succ":      "+1 Perk Point.",
+		"sub succ":  "+2 Perk Points.",
+		"crit succ": "+2 Perk Points, and a positive random encounter.",
 	},
 	"shelter": {
-		"crit fail": "Trigger hostile encounter and party is surprised.",
-		"sub fail":  "Trigger hostile encounter.",
+		"crit fail": "Party gets -2 to their next Journey Activity check.",
+		"sub fail":  "Party gets -1 to their next Journey Activity check.",
 		"fail":      "No effect.",
 		"succ":      "Haven.",
 		"sub succ":  "Haven which gives a further -1 fatigue or strife.",
@@ -627,17 +626,15 @@ var ACTIVITY_MODIFIERS map[string]map[string]int = map[string]map[string]int{
 var FEATS []string = []string{
 	"alert (WIS)",
 	"athlete (STR/DEX)",
-	"actor (CHA)",
 	"blinktouched",
 	"brawler (STR)",
 	"charger",
 	"crossbow expert",
 	"defensive duelist",
 	"dual wielder",
-	"dungeon delver (INT/WIS)",
+	"dungeon delver",
 	"durable (CON)",
 	"eldritch adept (req spell)",
-	"epathic (WIS/CHA)",
 	"grappler",
 	"fighting initiate",
 	"great weapon master",
@@ -648,10 +645,12 @@ var FEATS []string = []string{
 	"light armour master (DEX/CON)",
 	"magic initiate",
 	"martial scholar",
+	"master traveler",
 	"medium armour master (DEX/CON)",
 	"metamagic adept (req spell)",
 	"mounted combatant",
 	"polearm master",
+	"reflective",
 	"resilient (any ability)",
 	"ritual caster (INT/WIS/CHA)",
 	"sentinel",
@@ -659,6 +658,7 @@ var FEATS []string = []string{
 	"shield master",
 	"skilled (any ability)",
 	"skulker",
+	"socialite",
 	"specialist",
 	"spell touched",
 	"summoner",
@@ -679,6 +679,12 @@ var SIMPLE_WEAPONS []string = []string{
 	"morningstar",
 	"sickle",
 	"spear",
+	"staff",
+	"blowgun",
+	"crossbow",
+	"hand crossbow",
+	"sling",
+	"wand",
 }
 
 var MARTIAL_WEAPONS []string = []string{
@@ -686,6 +692,7 @@ var MARTIAL_WEAPONS []string = []string{
 	"battle axe",
 	"boomerang",
 	"bo staff",
+	"bullwhip",
 	"falchion",
 	"flail",
 	"glaive",
@@ -716,6 +723,10 @@ var MARTIAL_WEAPONS []string = []string{
 	"trident",
 	"warhammer",
 	"whip",
+	"longbow",
+	"net",
+	"shortbow",
+	"shrapnel trap",
 }
 
 var LANGUAGES []string = []string{
@@ -741,4 +752,95 @@ var ENCOUNTER_TAGS []string = []string{
 	"monstrous",
 	"humanoid",
 	"night",
+}
+
+var PLANES []string = []string{
+	"material plane",
+	"ethereal plane",
+	"astral plane",
+	"realm of the dead",
+	"elemental plane of air",
+	"elemental plane of earth",
+	"elemental plane of fire",
+	"elemental plane of water",
+	"nine hells",
+	"seven heavens",
+	"twisting canopy of the eternal forest",
+	"brilliant board of the cosmic game",
+	"warping stairways of the colossal tower",
+	"infinite rooms of the black cathedral",
+	"grand halls of the shimmering library",
+	"caverns of flesh",
+	"blank canvas",
+	"eternal slumber",
+	"cycling swamp",
+}
+
+var SPELL_LISTS []string = []string{
+	"bard",
+	"cleric",
+	"druid",
+	"herald",
+	"sorcerer",
+	"warlock",
+	"wizard",
+	"artificer",
+}
+
+var MARTIAL_TRADITIONS []string = []string{
+	"adamant mountain",
+	"biting zephyr",
+	"mirror's glint",
+	"mist and shade",
+	"rapid current",
+	"razor's edge",
+	"sanguine knot",
+	"spirited steed",
+	"tempered iron",
+	"tooth and claw",
+	"unending wheel",
+}
+
+var FOLLOWERS []string = []string{
+	"apothecary",
+	"bodyguard",
+	"cook",
+	"diviner",
+	"footpad",
+	"healer",
+	"interpreter",
+	"minstrel",
+	"sage",
+	"smith",
+	"squire",
+	"torchbearer",
+}
+
+var AFFINITIES []string = []string{
+	"weapon",
+	"spell",
+	"dot",
+	"random dmg type",
+	"hp",
+	"debuff",
+	"minion",
+	"defence",
+}
+
+var INACTIVE_DMS []string = []string{
+	"Dekel",
+	"Bentley",
+}
+
+var RING_STONES []string = []string{
+	"pearl",
+	"ruby",
+	"jade",
+	"diamond",
+	"obsidian",
+	"lapis",
+	"amethyst",
+	"citrine",
+	"sapphire",
+	"topaz",
 }

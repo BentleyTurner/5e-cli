@@ -6,12 +6,12 @@ Golang CLI helper for my D&amp;D 5e campaigns
 ### Sell values
 
 - Mundane: 5gp
-- Body: 20gp
 - Tome: 10gp
 - Amulet: 1gp
 - Relic: 60gp
+- Enchanted Equipment: 35gp
 
-### Relic level costs
+### Relic level costs (same price - 150)
 
 2. 20
 3. 30
@@ -23,6 +23,11 @@ Golang CLI helper for my D&amp;D 5e campaigns
 9. 300
 10. 400
 
+Bentley: 1400
+Adrian: 890
+Dan: 280
+Lawrence: 1400
+
 ### Relic generation
 
 1. 1st base affix
@@ -32,32 +37,25 @@ Golang CLI helper for my D&amp;D 5e campaigns
 5. Name Thematic
 6. Random from source
 7. Random PoE
-8. Random affix
+8. Generated affix
 
-### Dream relic generation
+### Dream inspiration options
 
-1. 1st base affix
-2. 2nd base affix
-3. 3rd base affix
-4. Thematic
-5. Class
-6. Backstory
-7. Race
-8. Feats
-9. Current relics
-10. Glyph path
-11. o5e/Pathfinder
-12. Reroll with disadv
-
-### Dream relic customisations
-
-- Backstory
+- Class/subclass feature
+- Knack
+- Feat
 - Race
-- Any one of your feats
-- Any one of your current items
-- Any one of your glyph paths
+- Spell/maneuver
 
-### Manual value cheatsheet
+### Perk generation
+
+- Backstory partner
+- Backstory identity
+- Build gap-fill
+- Self-synergy mechanic
+- AI
+
+### Tome value cheatsheet
 
 Always based on dmg where possible
 
@@ -65,19 +63,25 @@ Always based on dmg where possible
 - Slight: 15%
 - Substantial: 60%
 - Massive: 90%
-- Barely: 1%
+- Barely: 7%
+
+Without original values:
+- Spells: 10 + 5 per slot lvl/cantrip scale tier
+- Everything else (limited): 13 + 2 per party lvl
+- Everything else (non-limited): 8 + 1 per party lvl
 
 ### Point value cheatsheet
 
 - Dominate: 8
 - Stagger/Debil/exh/confused/uncon/silence/double disadv condi: 5
 - Single disadv condi/sluggish/charm/root/weak: 3
-- Prone/taunt/similar/slow: 2
+- Prone/taunt/similar: 2
 - Condi lasts until save/longer: x2
-- Limited feature conditional: -1
+- limited power conditional: -1
 - General conditional: -2
 - Party positioning conditional: -1
 - Common location conditional: -1
+- Uncommon location conditional: -3
 - Incoming healing: 2
 - Passive regen: 3
 - Mark effects: x2
@@ -88,12 +92,17 @@ Always based on dmg where possible
 - Ignore all res/imm: +5
 - Ignore res and immunity: +10
 - Equipment proficiency: +3
+- Language proficiency: +2
 - Armour proficiency requirement: -2
 - Weapon proficiency requirement: -3
 - 1/LR spellcast: 1/lvl
+- 1/SR spellcast: 2/lvl
+- 1/combat spellcast: 3/lvl
 - Learn spell: 1/lvl
 - Unlimited spellcast: 5/lvl
 - Minion creation: 5/CR
+- A choice becomes random: -3
+- Cheat death: 10
 
 ## Condition definitions
 
@@ -138,12 +147,6 @@ Shares condition immunity with frighten.
 
 A rattled creature cannot benefit from expertise dice and cannot take reactions.
 
-### Slowed
-
-Shares condition immunity with exhaustion.
-
-A slowed creature's speed is halved.
-
 ### Sluggish
 
 Shares condition immunity with exhaustion.
@@ -178,58 +181,35 @@ While riding your mount, your AC increases by 1.
 
 ## Ideas for next campaign/things to discuss
 
-- Investigate replacing body armours with non-party class feature-esque uniques? Or maybe subclasses? Replace base types for different armour weights to try to match archetypes nicely.
-
-- Replace rings: Soul gems, new slot is your soul, absorb gems to add thematic mods (eg. add wep dmg gem to give +2 wep dmg while bloodied). Using same gem either upgrades existing mod of that type or rerolls it (player's choice). new tags:
-    - choice of ability; temp hp; choice of type barrier; speed; choice of weapon class; 1h; 2h; shield; wep dmg; spell dmg; choice of dmg type; phys dmg; non-phys dmg; minion off; phys barrier; non-phys barrier; dot; debuff; buff; crit; minion def; aoe; melee; proj; pers area; conc; hit die healing; max hit dice; hp; choice of save; ac
-
-- Remove amulets
-
-- New loot option: attunement-requiring magic items. Any that fit into an equipment slot already in use are reflavoured to be on another slot. Can only attune to 1 at a time. Use existing wondrous weightings of rarities, but pushed 1 up (making the 2% Artifacts). Obviously, this means they will be pretty powerful, and must therefore be high on the loot table
-
-- Replace hard doubled mods with min 3pts (or just use D4 system? min 3 -> min 2 -> min 1 for 1 affix, 2, and 3 respectively)
-
-- Change books such that they are modifiers on generic types of powers, eg. your sphere AoE powers are now lines with length of their diameter
-
-- Change crafting stones to be instant-use, but allow rollback (Shrines). Put them instead of the gold-replacements for commons on the wondrous/attunement rolls. Those slots give 1 shrine, actual crafting table slot gives 2.
-
-- Change myth cards into amulets, with set bonuses on combining the same set
-
-- Crystals: 
-    - Drop as a creature type, each starts at CR 1
-    - When a crystal is generated, its power is randomly chosen from the contained creature's powers (respecting cooldowns, etc)
-    - Combine a crystal with another of the same type to increase its CR by 1
-    - When a crystal is tiered up, you can choose to keep the existing creature (though it will gain no benefits from the tier up)
-    - Smash together 2 crystals to generate a new crystal of a type that a player is using (if anyone has none, can be anything)
-    - 10% chance each turn per player to "flare", using its power. Calc on combat start with script, don't tell players other than telling them when they flare
-    - The crystals count as the wearer's minions for the sake of their powers, but whenever they reference themselves, they affect the player instead
-
-- Replace res with barrier?
-    - Values increased by 3, so dmg res goes from 1 per 2pts to 2 per 1pt + single pt resistances go to 4 per pt. Single type res goes to 5 per pt, polarity res is 3 per pt.
-
 - Drop the Looking for Trouble journey activity, force all players to always choose at least 1 journey activity per day, and make the DC for them a static 18. This allows other journey activities to become possible as your character levels up, as you may not always be able to use your primary activity when the weather, etc. is bad for it.
     - Because of redistributing the negatives from weather, even a standardly-maxed activity should drop below 50% success (+5 ability, +5 prof at L13, -4 from weather results in +6 bonus, which is 45% success chance)
     - All players MUST take at least 1 skill prof for their highest ability on char creation
     - All journey activities score a sub fail on a roll of 2.
 
-- New ideas from Crucible:
-    - Interesting selling affixes in standard pool
+- Augment system - some sort of experience and gain on breakpoints? Have class feature-esque boosts in the pool, and maybe stuff that adds synergy between backstory pairs. Every 50xp?
+
+- New ring idea: have a few base ring effects, very simple and basic, each time you upgrade a ring, it gets some options of how to 'progress', sort of like a skill tree. as you keep ugprading it, it moves further in that direction, getting progressively more specialised and powerful. Maybe use feats as inspiration for base concepts to branch from
+
+- New feat ideas
+Inspiration: Crits don't do extra dmg but have other effects
+
+Idea #1:
+Your critical hits no longer deal extra damage.
+Your critical hit range is increased by 2.
+Whenever you score a critical hit against a creature, you may choose to either debilitate or stagger it until the end of your next turn.
+If you score a critical hit against a creature that is already debilitated and staggered, they also become vulnerable to all damage until the end of your next turn.
 
 - Future loot options suggestion (d100 roll)
 1. Wondrous Items (low)
 2. Tomes (high)
 3. Rings (med)
-4. Reroll twice w/ upgrade (put at bottom)
-5. Amulets (med)
-6. Soul Gems (low)
-7. Shrines (med)
-8. Dream Mirrors (very high)
-9. Glyphs (very high)
-10. Relics (high)
-11. Body Armours (med)
-12. Tarots (high)
-13. Belt (med)
-14. Crystals (low)
-15. Magic Items (low)
+4. Amulets (med)
+5. Shrines (med)
+6. Dream Mirrors (very high)
+7. Glyphs (very high)
+8. Relics (high)
+9. Tarots (high)
+10. Crystals (low)
+11. Magic Items (low)
  
-7% each, except 4 is 2%
+8% each, remaining goes to reroll w/ upgrade (11%) + choose w/ upgrade (1% max)

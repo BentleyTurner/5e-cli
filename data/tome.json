@@ -28,7 +28,7 @@
     {
         "name": "Sapping Summons",
         "target": "powers that summon minions",
-        "description": "When the minions are hit, the offender is slowed until CON save (minion's DC)."
+        "description": "When the minions are hit, the offender has their speed halved until CON save (minion's DC)."
     },
     {
         "name": "Charging Summons",
@@ -68,12 +68,12 @@
     {
         "name": "Destructive Summons",
         "target": "powers that summon minions",
-        "description": "The limited features of the minions deal slightly more dmg and have slightly larger AoE sizes."
+        "description": "The limited powers of the minions deal slightly more dmg and have slightly larger AoE sizes."
     },
     {
         "name": "Overcharged Summons",
         "target": "powers that summon minions",
-        "description": "The limited features of the minions have their cooldowns increased by 1 step, but inflict a DoT dealing $nonPhysType dmg, stacking until DEX save (minion's DC), on hit"
+        "description": "The limited powers of the minions have their cooldowns increased by 1 step, but inflict a DoT dealing $nonPhysType dmg, stacking until DEX save (minion's DC), on hit"
     },
     {
         "name": "Reflective Summons",
@@ -198,7 +198,7 @@
     },
     {
         "name": "Persistent Mass",
-        "target": "powers with persistent areas",
+        "target": "powers that create persistent areas",
         "description": "The power's persistent areas have slightly more dmg and slightly more area."
     },
     {
@@ -310,7 +310,7 @@
     {
         "name": "Focused Channelling",
         "target": "powers with non-instantaneous durations that require reactivation each round",
-        "description": "The power's reactivation time is reduced by 1 action step, but you are slowed for its duration."
+        "description": "The power's reactivation time is reduced by 1 action step, but you have your speed halved for its duration."
     },
     {
         "name": "Charged Shielding",
@@ -354,12 +354,12 @@
     },
     {
         "name": "Sudden Eruption",
-        "target": "powers that require reactivation each round and do not have a cone AoE",
+        "target": "powers that require reactivation each round and do not have a cone area",
         "description": "The power's duration is now instantaneous and only activates on casting, but now affects a cone area with length equal to the original range or area length. It also deals substantially more dmg."
     },
     {
         "name": "Inflicting Eruption",
-        "target": "powers with cone AoEs",
+        "target": "powers with cone areas",
         "description": "Any debuffs the power can apply have +1 to their related DCs, and the power deals barely more dmg."
     },
     {
@@ -643,12 +643,12 @@
     {
         "name": "Slowing Decay",
         "target": "powers that deal damage over time",
-        "description": "While a creature is affected by the power's DoT, it is slowed."
+        "description": "While a creature is affected by the power's DoT, it has its speed halved."
     },
     {
         "name": "Sluggish Slowing",
-        "target": "powers that can inflict slow",
-        "description": "The power's slow is converted to sluggish."
+        "target": "powers that can reduce target speed",
+        "description": "The power's speed reduction is converted to sluggish."
     },
     {
         "name": "Staggering Decay",
@@ -672,7 +672,7 @@
     },
     {
         "name": "Drifting",
-        "target": "powers with persistent areas",
+        "target": "powers that create persistent areas",
         "description": "The power's persistent areas move 5' away from where you were when they were created at the start of each of your turns."
     },
     {
@@ -723,7 +723,7 @@
     {
         "name": "Explosive Rooting",
         "target": "any power",
-        "description": "Whenever the power creates a sphere area, all foes in that area are rooted until end of their next turn. If an affected foe is a boss, it is slowed instead."
+        "description": "Whenever the power creates a sphere area, all foes in that area are rooted until end of their next turn. If an affected foe is a boss, it has its speed halved instead."
     },
     {
         "name": "Keen Explosions",
@@ -794,7 +794,7 @@
     {
         "name": "Inconsistent Sapping",
         "target": "powers that require reactivation each round",
-        "description": "Every 3 reactivations, the power's hits slow the target until the end of your next turn, and inflict a DoT dealing $physType dmg, stacking until CON save."
+        "description": "Every 3 reactivations, the power's hits halve the target's speed until the end of your next turn, and inflict a DoT dealing $physType dmg, stacking until CON save."
     },
     {
         "name": "Inconsistent Cruelty",
@@ -853,12 +853,12 @@
     },
     {
         "name": "Overwhelming Persistence",
-        "target": "powers with persistent areas that deal damage",
+        "target": "powers that create persistent areas that deal damage",
         "description": "The power's persistent areas' durations are increased by 1 step and have more area, but deal substantially less dmg."
     },
     {
         "name": "Creeping Persistence",
-        "target": "powers with persistent areas",
+        "target": "powers that create persistent areas",
         "description": "The power's persistent areas move 5' towards their nearest foes at the start of each of your turns."
     },
     {
@@ -904,8 +904,8 @@
     },
     {
         "name": "Massive Debilitation",
-        "target": "any power",
-        "description": "The power has barely more area and whenever it hits it debilitates the target until the end of your next turn."
+        "target": "powers that deal damage and have areas",
+        "description": "The power has more area and whenever it hits it debilitates the target until the end of your next turn. Additionally, it deals less damage."
     },
     {
         "name": "Massive Support",
@@ -975,7 +975,7 @@
     {
         "name": "Mass Sapping",
         "target": "powers with a non-instantaneous duration",
-        "description": "You project an aura while the power is active that slows adj foes.",
+        "description": "You project an aura while the power is active that halves the speed of adj foes.",
         "meta": "Aura of Decay"
     },
     {
@@ -1001,7 +1001,7 @@
     {
         "name": "Sacrificial Persistence",
         "target": "powers that create persistent areas which can damage you",
-        "description": "The power's persistent areas tick twice at the start of each of your turns, in additional to their usual tick, but whenever they do so, they tick once against you, regardless of your location. Additionally, the power deals less dmg."
+        "description": "The power's persistent areas tick twice at the start of each of your turns, in addition to their usual tick, but whenever they do so, they tick once against you, regardless of your location. Additionally, the power deals less dmg."
     },
     {
         "name": "Intense Persistence",
@@ -1045,7 +1045,7 @@
     },
     {
         "name": "Volatile Persistence",
-        "target": "powers with persistent areas",
+        "target": "powers that create persistent areas",
         "description": "1/turn, when a creature dies within the power's pers areas, their corpse emits a nova of energy, which inflicts a DoT dealing slight $nonPhysType dmg, stacking until CON save, on all creatures of your choice adj to it."
     },
     {
@@ -1060,7 +1060,7 @@
     },
     {
         "name": "Persistent Erosion",
-        "target": "powers with persistent areas",
+        "target": "powers that create persistent areas",
         "description": "Foes within the power's pers areas take substantially more $nonPhysType dmg."
     },
     {
@@ -1075,7 +1075,7 @@
     },
     {
         "name": "Persistent Sacrifice",
-        "target": "powers with persistent areas",
+        "target": "powers that create persistent areas",
         "description": "You and foes within the power's pers areas take substantially more $nonPhysType dmg."
     },
     {
@@ -1095,17 +1095,17 @@
     },
     {
         "name": "Persistent Restoration",
-        "target": "powers with persistent areas",
+        "target": "powers that create persistent areas",
         "description": "You and allies within the power's pers areas gain barely any passive regen. This regen is doubled while you are bloodied."
     },
     {
         "name": "Persistent Exploitation",
-        "target": "powers with persistent areas",
+        "target": "powers that create persistent areas",
         "description": "Your minions within the power's pers areas inflict a DoT on hit dealing $nonPhysType dmg, stacking until CON save (minion's DC), but are inflicted with a DoT dealing slight {type} dmg, stacking until CON save, whenever the area ticks (your DC)."
     },
     {
         "name": "Persistent Control",
-        "target": "powers with persistent areas",
+        "target": "powers that create persistent areas",
         "description": "Your minions within the power's pers areas deal more $nonPhysType dmg."
     },
     {
@@ -1141,12 +1141,12 @@
     },
     {
         "name": "Persistent Endurance",
-        "target": "powers with persistent areas that deal damage",
+        "target": "powers that create persistent areas that deal damage",
         "description": "The power's persistent areas' durations are increased by 1 step, but they deal less dmg."
     },
     {
         "name": "Armoured Persistence",
-        "target": "powers with persistent areas",
+        "target": "powers that create persistent areas",
         "description": "While the power's persistent areas are active, you have massively more phys barrier."
     },
     {
@@ -1227,7 +1227,7 @@
     },
     {
         "name": "Persistent Power",
-        "target": "powers with persistent areas",
+        "target": "powers that create persistent areas",
         "description": "The power's pers areas deal more dmg."
     },
     {
@@ -1429,7 +1429,7 @@
     {
         "name": "Charged Summons",
         "target": "powers that summon minions that deal damage",
-        "description": "The limited features of the minions have their cooldowns reduced by 1 step, and their buffs on themselves have double duration. The minions deal less dmg."
+        "description": "The limited powers of the minions have their cooldowns reduced by 1 step, and their buffs on themselves have double duration. The minions deal less dmg."
     },
     {
         "name": "Generous Summons",
@@ -1469,7 +1469,7 @@
     {
         "name": "Keen Favour",
         "target": "powers that have multiple static minion summoning options",
-        "description": "The minions have +1 crit range, but the first minion option deals less dmg and have less max HP."
+        "description": "The minions have +1 crit range, but the first minion option deals less dmg and has less max HP."
     },
     {
         "name": "Powerful Favour",
@@ -1523,14 +1523,14 @@
         "description": "Whenever the shapeshift starts its turn, it gains a slight amount of spell dmg until it reverts."
     },
     {
-        "name": "Hyperpresent Shifting",
-        "target": "powers that shapeshift",
-        "description": "Effects that would trigger at the start of the shapeshift's turns also trigger at the end of its turns."
+        "name": "Hyperpresence",
+        "target": "any power",
+        "description": "Effects of the power that trigger at the start of a turn also trigger at the end of that same turn."
     },
     {
         "name": "Shifting Decay",
         "target": "powers that shapeshift",
-        "description": "Whenever the shapeshift scores a KB with a charged wep atk, it releases bolts of energy that seek out all foes within 120' of it. Each bolt inflicts a DoT on its target dealing slight $nonPhysType dmg, stacking until CHA save."
+        "description": "Whenever the shapeshift scores a KB with a charged wep atk, it releases bolts of decay that seek out all foes within 120' of it. Each bolt inflicts a DoT on its target dealing slight $nonPhysType dmg, stacking until CHA save."
     },
     {
         "name": "Cruel Shifting",
@@ -1538,14 +1538,9 @@
         "description": "The shapeshift's charged wep atks deal more dmg vs bloodied targets."
     },
     {
-        "name": "Charged Shifting",
-        "target": "powers that shapeshift",
-        "description": "The shapeshift's melee wep atks have their cooldowns reduced by 1 step, but they deal less dmg."
-    },
-    {
-        "name": "Blinking Shifting",
-        "target": "powers that shapeshift into forms which have teleports with cooldowns",
-        "description": "The shapeshift's teleports have their usage time reduced by 1 step and travel farther, but their cooldowns are increased by 1 step."
+        "name": "Blinking",
+        "target": "powers with a cooldown that teleport an entity",
+        "description": "The power's usage time is reduced by 1 step and its teleports travel farther, but its cooldown is increased by 1 step."
     },
     {
         "name": "Shifting Energy",
@@ -1949,7 +1944,7 @@
     {
         "name": "Delayed Eruption",
         "target": "powers that deal damage",
-        "description": "Whenever the power hits, the target is charged with unstable energy, which erupts into an explosion of energy at the start of your next turn, making spell atks against all foes adj to the target that deal $nonPhysType dmg. Additionally, the power deals less dmg."
+        "description": "Whenever the power hits, the target is charged with unstable energy, which erupts into an explosion of energy at the start of your next turn, making spell atks against all foes adj to the target, including the target, that deal $nonPhysType dmg. Additionally, the power deals less dmg."
     },
     {
         "name": "Cruel Technique",
@@ -2034,7 +2029,7 @@
     {
         "name": "Mobile Power",
         "target": "powers that move you",
-        "description": "If the power displaces you 30+', it deals more dmg."
+        "description": "If the power displaces you 15+', it deals more dmg."
     },
     {
         "name": "Crippled Power",
@@ -2069,7 +2064,7 @@
     },
     {
         "name": "Persistence",
-        "target": "powers with persistent areas",
+        "target": "powers that create persistent areas",
         "description": "When the power's pers area ends, it ticks 1 more time."
     },
     {
@@ -2090,7 +2085,7 @@
     {
         "name": "Slowing",
         "target": "any power",
-        "description": "Whenever the power hits, the target is slowed until the end of your next turn."
+        "description": "Whenever the power hits, the target has its speed halved until the end of your next turn."
     },
     {
         "name": "Empowering Strikes",
@@ -2256,7 +2251,7 @@
     {
         "name": "Enduring Slowing",
         "target": "any power",
-        "description": "Whenever the power hits, the target is slowed until CON save.",
+        "description": "Whenever the power hits, the target has its speed halved until CON save.",
         "meta": "Acid Flask"
     },
     {
@@ -2429,7 +2424,7 @@
     {
         "name": "Flurried Slowing",
         "target": "single-target powers with multiple hits in the same action",
-        "description": "The power's third hit inflicts slow until the end of your next turn."
+        "description": "The power's third hit halves the target's speed until the end of your next turn."
     },
     {
         "name": "Close Waves",
@@ -2578,8 +2573,417 @@
         "description": "Whenever you use the power, your hits for the next round inflict a DoT dealing $nonPhysType dmg, stacking until CON save. Additionally, whenever you use the power, you are inflicted with a DoT dealing slight {type} dmg, stacking until CON save."
     },
     {
-        "name": "Merciful Defence [next - hunger]",
+        "name": "Merciful Defence",
         "target": "any power",
         "description": "Whenever the power hits, all of your debuffs on the target are removed and you gain a massive amount of phys and $dmgType barrier until the end of your next turn for each."
+    },
+    {
+        "name": "Rapid Efficiency",
+        "target": "powers with a non-cooldown resource cost that deal damage",
+        "description": "The power's usage time and resource cost are both reduced by 1 step, but it deals massively reduced damage."
+    },
+    {
+        "name": "Decay",
+        "target": "any power",
+        "description": "Whenever the power hits, the target is inflicted with a DoT dealing slight $nonPhysType dmg, stacking until CHA save."
+    },
+    {
+        "name": "Sacrificial Control",
+        "target": "any power",
+        "description": "Whenever you score a killing blow with the power against a debuffed target, your minions gain substantially increased dmg until the end of their next turn."
+    },
+    {
+        "name": "True Decay",
+        "target": "powers that inflict DoTs",
+        "description": "The power's DoTs ignore damage resistances."
+    },
+    {
+        "name": "Soul Conversion",
+        "target": "any power",
+        "description": "Whenever you score a killing blow with the power against a debuffed target, they are reanimated as a Soul Wisp, a CR 2 undead minion, that disappears on combat end."
+    },
+    {
+        "name": "Flexible Eruption",
+        "target": "powers with self-burst areas that require targets to be debuffed in some way and deal damage",
+        "description": "The power no longer requires its targets to be debuffed in any way and its self-burst areas are converted into cones with length equal to the bursts' ranges. Additionally, the power deals less damage."
+    },
+    {
+        "name": "Telekinetic Haste",
+        "target": "powers that move objects and deal damage",
+        "description": "The power can move objects double its usual distance. Additionally, whenever you use the power, you gain +10' speed until the end of your next turn. Additionally, the power deals less damage."
+    },
+    {
+        "name": "Blunt Shielding",
+        "target": "powers that grant temporary hit points and deal damage",
+        "description": "The power grants substantially more temp HP, but deals less damage."
+    },
+    {
+        "name": "Accuracy",
+        "target": "any power",
+        "description": "The power has +1 Accuracy.",
+        "meta": "Multishot"
+    },
+    {
+        "name": "Enduring Torment",
+        "target": "powers that deal damage",
+        "description": "The power's debuffs and DoTs have their durations increased by 1 step, but the power's dmg is massively reduced."
+    },
+    {
+        "name": "Prolonged Affliction",
+        "target": "any power",
+        "description": "Whenever the power hits, all debuffs on the target have their remaining durations reset to their maximum duration."
+    },
+    {
+        "name": "Shotgunning",
+        "target": "powers with cone areas that deal damage",
+        "description": "The power's cone areas affect targets adj to their origin twice and any debuffs they inflict have +1 to their DCs, but the power deals substantially less dmg."
+    },
+    {
+        "name": "Focus",
+        "target": "any power",
+        "description": "The power deals more dmg if you haven't moved since the start of your last turn."
+    },
+    {
+        "name": "Prepared Motion",
+        "target": "any power",
+        "description": "After using the power when you haven't moved since the start of your last turn, gain +10' sp until the end of your next turn."
+    },
+    {
+        "name": "Pure Decay",
+        "target": "any power",
+        "description": "Any debuffs the power inflicts are converted into individual stacks of a DoT dealing slight $nonPhysType, stacking until CON save."
+    },
+    {
+        "name": "Repeating",
+        "target": "any power",
+        "description": "Every 2 times you use the power, it is repeated once at no additional cost."
+    },
+    {
+        "name": "Impatience",
+        "target": "powers that change over their duration",
+        "description": "The power starts as if it had been active for 1 round already."
+    },
+    {
+        "name": "Fervour",
+        "target": "powers that deal damage",
+        "description": "The power's usage time is reduced by 1 step and you gain +10' sp until the end of your next turn whenever you use it, but it deals substantially less dmg."
+    },
+    {
+        "name": "Close Eruption",
+        "target": "powers with cone areas of size 30' or larger",
+        "description": "The power's cone areas deal substantially more dmg against creatures adj to their origins, and less dmg against creatures 30+' away from their origins."
+    },
+    {
+        "name": "Splintering",
+        "target": "powers with cone areas and a non-cooldown resource cost",
+        "description": "On making a proj atk, the power is also used in the same direction. The power also has +1 to its debuff DCs and has its resource cost increased by 1 step."
+    },
+    {
+        "name": "Focused Eruption",
+        "target": "powers with cone areas",
+        "description": "The power's cone areas deal substantially more dmg but are smaller."
+    },
+    {
+        "name": "Heavy Power",
+        "target": "any power",
+        "description": "The power's cone areas deal massively more dmg, but its usage time is increased by 1 step."
+    },
+    {
+        "name": "Shoving Eruption",
+        "target": "powers with cone areas",
+        "description": "Whenever the power's cone areas hit, the target is pushed 10' away from the cone's origin."
+    },
+    {
+        "name": "Desperate Eruption",
+        "target": "powers with cone areas and a non-cooldown resource cost",
+        "description": "The power can be used with no cost if you cannot afford its cost, but when you do so it can only target a single creature within its original area."
+    },
+    {
+        "name": "Volleying",
+        "target": "powers that fire a single projectile",
+        "description": "The power's proj is converted into a 15'-wide line with a length equal to the proj's range.",
+        "meta": "Runebolt"
+    },
+    {
+        "name": "Accurate Fanning",
+        "target": "powers that fire a single projectile and deal damage",
+        "description": "The power's proj is converted into a cone with length equal to the original proj's range and has +1 Accuracy, but deals less dmg."
+    },
+    {
+        "name": "Infused Volleying",
+        "target": "powers that fire a single projectile",
+        "description": "While in a pers area, the power's proj is converted into a 25'-wide line with a length equal to the original proj's range."
+    },
+    {
+        "name": "Prismatic Recovery",
+        "target": "powers with multiple damage type options and a non-cooldown resource cost",
+        "description": "Whenever the power hits with its first dmg type option, you heal a slight amount of HP. With its second option, you gain temp HP. With its third option, you recover 1 unit of its resource cost but deal less dmg."
+    },
+    {
+        "name": "Dedication",
+        "target": "powers with a non-cooldown resource cost and an Accuracy component",
+        "description": "If the last 3 powers you used were the power, the power ignores dmg res and immunity, deals barely more dmg, heals you for barely any HP, grants you a slight amount of temp HP, and recovers 1 unit of its resource cost. Additionally, the power has -2 Accuracy."
+    },
+    {
+        "name": "Infusion",
+        "target": "powers that fire projectiles",
+        "description": "Whenever the power's projs pass through a pers area, they come out dealing substantially more dmg and with +1 Accuracy. Additionally, the power's usage time is increased by 1 step."
+    },
+    {
+        "name": "Supported Force",
+        "target": "any power",
+        "description": "The power deals additional $physType dmg while you are adj to another player character."
+    },
+    {
+        "name": "Runecrafting",
+        "target": "powers with a non-cooldown resource cost that fire projectiles",
+        "description": "If you don't have an active runestone, instead of firing projs, the power lays a tiny runestone on an unoccupied space you can see within the original proj's range. If you already have an active runestone, the power's projs are fired from the runestone instead of you (using the stone's LoS) and deal massively more dmg with +2 Accuracy. At the end of combat, the runestone expires and you lose 1 unit of the power's resource cost."
+    },
+    {
+        "name": "Infused Projection",
+        "target": "powers that summon entities that can deal your damage remotely",
+        "description": "1/rnd, when you use the power while buffed, all buffs on you are consumed to give the summoned entity substantially more dmg and increase its reach by 5' while it is dealing your dmg."
+    },
+    {
+        "name": "Channeled Projection",
+        "target": "powers that require concentration",
+        "description": "On turn start while concentrating on the power, your nearest summoned entity that can deal your damage remotely gains increased dmg for its next activation."
+    },
+    {
+        "name": "Detonating Missiles",
+        "target": "powers that fire projectiles",
+        "description": "Whenever the power's projs hit either a creature, obj, or structure, they explode, making a spell atk against all foes adj to the collision point (other than a hit creature) that deals 1d4 dmg of the proj's base type."
+    },
+    {
+        "name": "Infused Explosions",
+        "target": "powers with sphere areas",
+        "description": "The power's sphere areas have more area if you have barrier specifically for their base dmg types."
+    },
+    {
+        "name": "Warding Recovery",
+        "target": "powers with a non-cooldown resource cost that deal damage",
+        "description": "Whenever the power hits, you recover 1 unit of its cost and gain temp HP whenever you use a limited power until the end of your next turn. Additionally, the power deals substantially less dmg."
+    },
+    {
+        "name": "Supported Precision",
+        "target": "powers that apply buffs",
+        "description": "While buffed by the power, your other powers have +1 crit range."
+    },
+    {
+        "name": "Supported Adaptation",
+        "target": "powers that apply buffs",
+        "description": "While buffed by the power, you treat all increased dmg taken on creatures as always matching your dmg."
+    },
+    {
+        "name": "Supported Prismatism",
+        "target": "powers that deal damage",
+        "description": "While offensively buffed, the power's hits inflict a DoT dealing slight $nonPhysType dmg, stacking until DEX save. While buffed by an aura, the power's hits give slightly increased $nonPhysType dmg taken until the end of your next turn. While defensively buffed, the power's hits inflict a DoT dealing slight $nonPhysType dmg, stacking until CON save. Additionally, the power deals substantially less dmg."
+    },
+    {
+        "name": "Incubating Chaos",
+        "target": "any power",
+        "description": "Whenever the power hits, the next limited power you use triggers a Wild Magic Surge."
+    },
+    {
+        "name": "True Power",
+        "target": "any power",
+        "description": "The power's base dmg is converted to true. Additionally, it deals more dmg."
+    },
+    {
+        "name": "Consistency",
+        "target": "any power",
+        "description": "The power always deals the same base dmg type as the base dmg type of the last power you used. Additionally, it deals more dmg."
+    },
+    {
+        "name": "Swiftness",
+        "target": "powers that deal damage",
+        "description": "The power's usage time is reduced by 1 step and whenever you use it, you gain +10' sp for 1 round. Additionally, its dmg is substantially reduced."
+    },
+    {
+        "name": "True Divinity",
+        "target": "any power",
+        "description": "The power's base dmg is converted to true. Additionally, whenever your party uses (and accepts the results of) a shrine, the power gains +1 dmg."
+    },
+    {
+        "name": "Monochromaticism",
+        "target": "powers with multiple damage type options",
+        "description": "Upon upgrading the power, choose one of its dmg type options - it always uses that dmg type, but its dmg is increased."
+    },
+    {
+        "name": "Desperate Command",
+        "target": "powers that apply buffs",
+        "description": "While the power is buffing a minion, it gains +1 buff effectiveness while the minion is bloodied.",
+        "meta": "Dread Shade"
+    },
+    {
+        "name": "Draining Explosions",
+        "target": "powers that apply buffs",
+        "description": "Minions buffed by the power lose barely any passive regen and if they die while buffed, the buff explodes and you make a spell atk against all foes adj to the corpse that deals massive $nonPhysType dmg."
+    },
+    {
+        "name": "Massive Command",
+        "target": "powers that apply buffs",
+        "description": "The power has more area that only affects minions."
+    },
+    {
+        "name": "Ethereal Persistence",
+        "target": "powers that create persistent areas that deal damage",
+        "description": "The power's pers areas no longer deal dmg to minions, have their durations increased by 1 step, and are substantially smaller. Additionally, any increases to the pers areas' dmg are converted into increased dmg taken by minions inside."
+    },
+    {
+        "name": "Quickening Command",
+        "target": "powers that apply buffs",
+        "description": "Minions buffed by the power have their power usage times decreased by 1 step, but they deal less dmg."
+    },
+    {
+        "name": "Powerful Command",
+        "target": "powers that apply buffs",
+        "description": "The power has more area that only affects minions and grants minions buffed by it more dmg, but the minions lose barely any passive regen."
+    },
+    {
+        "name": "Borrowed Blessings",
+        "target": "powers that apply buffs",
+        "description": "Whenever the power's buffs end, foes and minions adj to the buffed creature are cursed with increased global dmg taken until CHA save."
+    },
+    {
+        "name": "Sacrificial Command",
+        "target": "powers that apply buffs",
+        "description": "Whenever a minion buffed by the power dies, another minion within 60' of it of your choice also dies, exploding. You make a spell atk against all foes adj to this corpse dealing massive B dmg."
+    },
+    {
+        "name": "Shared Command",
+        "target": "powers that apply buffs",
+        "description": "While the power is buffing a minion and not you, you also receive all effects of the buff. Additionally, the buff has -1 effectiveness."
+    },
+    {
+        "name": "Commanding Beacons",
+        "target": "powers that apply buffs",
+        "description": "While the power is buffing a foe, it does not grant that foe any of its effects, but instead radiates an aura that grants its effects to all minions within 60' of that foe. Additionally, the buff's duration is reduced by 1 step and it has +1 effectiveness."
+    },
+    {
+        "name": "Decaying Command",
+        "target": "powers that apply buffs",
+        "description": "Minions buffed by the power inflict a DoT on hit dealing slight $nonPhysType dmg, stacking until CHA save."
+    },
+    {
+        "name": "Afflicted Persistence",
+        "target": "powers that create persistent areas",
+        "description": "At the start of each of your turns, the power's pers areas inflict a DoT dealing $nonPhysType dmg, stacking until CHA save, to all foes and minions within their areas."
+    },
+    {
+        "name": "Blinding Command",
+        "target": "powers that apply buffs",
+        "description": "Minions buffed by the power have their power usage times decreased by 1 step and are blinded."
+    },
+    {
+        "name": "Commanding Persistence",
+        "target": "powers that create persistent areas",
+        "description": "The power's pers areas deal slightly less dmg to minions, and any minions inside them deal slight additional $nonPhysType dmg with hits."
+    },
+    {
+        "name": "Focused Command",
+        "target": "powers that apply buffs in an area",
+        "description": "The power can now only buff a single minion within its area, but while the minion is buffed by the power, it deals massively more dmg."
+    },
+    {
+        "name": "Keen Command",
+        "target": "powers with no cooldown that apply buffs",
+        "description": "Minions buffed by the power always crit, but the power now can only be used once per combat."
+    },
+    {
+        "name": "Totemic Command",
+        "target": "powers that apply buffs",
+        "description": "Minions buffed by the power have their sp reduced to 0 and continuously taunt all foes within 60' of them. Additionally, they have +2 AC."
+    },
+    {
+        "name": "Ethereal Decay",
+        "target": "powers that create persistent areas",
+        "description": "The power's pers areas no longer deal dmg to minions, but instead inflict a DoT dealing $nonPhysType dmg, stacking until CON save, on them on each tick."
+    },
+    {
+        "name": "Undying Command",
+        "target": "powers that apply buffs",
+        "description": "Undead minions buffed by the power deal more dmg."
+    },
+    {
+        "name": "Inverted Command",
+        "target": "powers that apply buffs in an area",
+        "description": "The power's area is larger, but its buffs no longer apply to minions inside its area. Instead, relevant minions outside its area are affected."
+    },
+    {
+        "name": "Stable Empowerment",
+        "target": "powers that apply buffs and require concentration",
+        "description": "You can concentrate on the power twice, but it has -1 buff effectiveness."
+    },
+    {
+        "name": "Hastening Command",
+        "target": "powers that apply buffs",
+        "description": "Whenever you buff a minion with the power, they have their power usage times reduced by 1 step for 1 round. Additionally, the power has -1 buff effectiveness."
+    },
+    {
+        "name": "Decaying Haste",
+        "target": "powers that apply buffs",
+        "description": "Minions buffed by the power have +20' sp, but are inflicted with a DoT dealing slight $nonPhysType dmg, stacking until DEX save, at the start of each of your turns"
+    },
+    {
+        "name": "Necromantic Command",
+        "target": "powers that apply buffs",
+        "description": "Whenever a minion buffed by the power dies, you summon a CR 1/4 energy zombie minion from its corpse that deals $nonPhysType dmg. Additionally, the power has -1 buff effectiveness."
+    },
+    {
+        "name": "Synergistic Empowerment",
+        "target": "powers that apply buffs",
+        "description": "Whenever you use the power, the duration of another of your buffs of your choice is refreshed. Additionally, the power has -1 buff effectiveness."
+    },
+    {
+        "name": "Draining Armour",
+        "target": "powers that apply buffs",
+        "description": "Minions buffed by the power have massively more phys barrier and deal more dmg, but have barely reduced passive regen."
+    },
+    {
+        "name": "Lingering Decay",
+        "target": "powers that apply buffs",
+        "description": "Whenever the power's buffs expire, a foe of your choice adj to the buff's target is inflicted with a DoT dealing slight $nonPhysType dmg, stacking until CHA save."
+    },
+    {
+        "name": "Empowering Summons",
+        "target": "powers that summon minions",
+        "description": "The power's minions' buffs have +1 effectiveness.",
+        "meta": "Summon Frenzy Totem"
+    },
+    {
+        "name": "Berserking",
+        "target": "any power",
+        "description": "Whenever you use the power, you gain the following effects for 1rnd: increased dmg, the usage times of your melee atks are reduced by 1 step, and you take substantially increased dmg."
+    },
+    {
+        "name": "Summoned Power",
+        "target": "any power",
+        "description": "Whenever you use the power, your minions add additional $physType dmg to their melee hits for 1rnd."
+    },
+    {
+        "name": "Manifestation",
+        "target": "any power",
+        "description": "Whenever you use the power, your crystal has a chance to flare."
+    },
+    {
+        "name": "Manifested Empowerment",
+        "target": "powers that summon minions",
+        "description": "While you have an active minion from the power, whenever your crystal flares, you and allies within 60' of you gain +1 crit range for 1rnd."
+    },
+    {
+        "name": "Duplicated Manifestation",
+        "target": "powers that summon minions",
+        "description": "While you have an active minion from the power, your crystals flare an additional time whenever they flare."
+    },
+    {
+        "name": "Massive Manifestation",
+        "target": "powers that summon minions",
+        "description": "While you have an active minion from the power, the areas of your crystal flares are substantially larger."
+    },
+    {
+        "name": "Empowered Decaying [next - Revitalising Totem]",
+        "target": "powers that summon minions",
+        "description": "Creatures buffed by the power's minions inflict a DoT on hit, dealing slight $nonPhysType dmg, stacking until CON save."
     }
 ]

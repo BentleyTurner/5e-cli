@@ -102,7 +102,7 @@
         "tags": ["spell"]
     },
     {
-        "description": "you can cast [random cantrip] at will, using INT, WIS, or CHA",
+        "description": "you can cast [random cantrip] at will, using any ability",
         "pointValue": "3",
         "upgrade": "+1 random cantrip/3",
         "tags": ["spell"]
@@ -228,14 +228,26 @@
         "tags": ["hp"]
     },
     {
-        "description": "+1d4 {type} dmg to wep hits",
+        "description": "+1d4 {type} dmg to your wep hits",
         "pointValue": "3",
         "upgrade": "+1/1",
         "tags": ["type", "weapon"]
     },
     {
-        "description": "+1d4 {type} dmg to spell hits",
+        "description": "+1d4 {type} dmg to your spell hits",
         "pointValue": "3",
+        "upgrade": "+1/1",
+        "tags": ["type", "spell"]
+    },
+    {
+        "description": "+1d4 {type} dmg to your sub wep hits",
+        "pointValue": "2",
+        "upgrade": "+1/1",
+        "tags": ["type", "weapon"]
+    },
+    {
+        "description": "+1d4 {type} dmg to your sub spell hits",
+        "pointValue": "2",
         "upgrade": "+1/1",
         "tags": ["type", "spell"]
     },
@@ -648,19 +660,13 @@
         "tags": ["dot"]
     },
     {
-        "description": "weps can be swapped in or out for another as a free action",
-        "pointValue": "1",
-        "upgrade": "+1 wep dmg/1",
-        "tags": ["weapon"]
-    },
-    {
-        "description": "+2 wep dmg with limited features",
+        "description": "+2 wep dmg with limited powers",
         "pointValue": "1",
         "upgrade": "+1/1",
         "tags": ["weapon"]
     },
     {
-        "description": "+2 spell dmg with limited features",
+        "description": "+2 spell dmg with limited powers",
         "pointValue": "1",
         "upgrade": "+1/1",
         "tags": ["spell"]
@@ -708,13 +714,13 @@
         "tags": ["spell"]
     },
     {
-        "description": "+2 wep dmg vs targets who cannot sense any allies within 60'",
+        "description": "+2 wep dmg vs targets who are alone in combat",
         "pointValue": "1",
         "upgrade": "+1/1",
         "tags": ["weapon"]
     },
     {
-        "description": "+2 spell dmg vs targets who cannot sense any allies within 60'",
+        "description": "+2 spell dmg vs targets who are alone in combat",
         "pointValue": "1",
         "upgrade": "+1/1",
         "tags": ["spell"]
@@ -993,7 +999,7 @@
         "description": "+1 to saves to end ongoing debuffs",
         "pointValue": "4",
         "upgrade": "+1/4",
-        "tags": ["defence"]
+        "tags": ["defence", "debuff"]
     },
     {
         "description": "on init, heal 2 HP",
@@ -1026,6 +1032,12 @@
         "tags": ["weapon", "spell"]
     },
     {
+        "description": "+1 dmg with wep hits enhanced by a spell",
+        "pointValue": "1",
+        "upgrade": "+1/1",
+        "tags": ["weapon", "spell"]
+    },
+    {
         "description": "+1 to saves vs disease",
         "pointValue": "1",
         "upgrade": "+1/1",
@@ -1042,6 +1054,12 @@
         "pointValue": "2",
         "upgrade": "+1/2",
         "tags": ["defence", "debuff"]
+    },
+    {
+        "description": "+1 mark dmg",
+        "pointValue": "2",
+        "upgrade": "+1/2",
+        "tags": ["debuff"]
     },
     {
         "description": "+3 wep thorns",
@@ -1176,7 +1194,7 @@
         "tags": ["defence"]
     },
     {
-        "description": "on limited feature use, heal 1 HP",
+        "description": "on limited power use, heal 1 HP",
         "pointValue": "1",
         "upgrade": "+1/1",
         "tags": ["hp"]
@@ -1524,6 +1542,12 @@
         "tags": ["type", "debuff"]
     },
     {
+        "description": "creatures debuffed by you have +1 {type} dmg taken",
+        "pointValue": "1",
+        "upgrade": "+1/1",
+        "tags": ["type", "debuff"]
+    },
+    {
         "description": "+2 {type} dmg while $healthStatus",
         "pointValue": "1",
         "upgrade": "+1/1",
@@ -1540,6 +1564,12 @@
         "pointValue": "4",
         "upgrade": "+1/4",
         "tags": ["type", "defence"]
+    },
+    {
+        "description": "+1 partial AC that only halves an incoming attack's dmg",
+        "pointValue": "2",
+        "upgrade": "+1/2",
+        "tags": ["defence"]
     },
     {
         "description": "with 2+ adj foes, your minions have +6 dmg barrier",
@@ -1606,5 +1636,35 @@
         "pointValue": "2",
         "upgrade": "+1/2",
         "tags": ["minion", "dot"]
+    },
+    {
+        "description": "while buffing an ally, +1 wep dmg",
+        "pointValue": "1",
+        "upgrade": "+1/1",
+        "tags": ["weapon"]
+    },
+    {
+        "description": "while buffing an ally, +1 spell dmg",
+        "pointValue": "1",
+        "upgrade": "+1/1",
+        "tags": ["spell"]
+    },
+    {
+        "description": "+1 wep dmg while dual-wielding",
+        "pointValue": "1",
+        "upgrade": "+1/1",
+        "tags": ["weapon"]
+    },
+    {
+        "description": "+1 spell dmg while dual-wielding",
+        "pointValue": "1",
+        "upgrade": "+1/1",
+        "tags": ["spell", "weapon"]
+    },
+    {
+        "description": "whenever you gain HP while downed, gain 2 more HP",
+        "pointValue": "1",
+        "upgrade": "+1/1",
+        "tags": ["hp"]
     }
 ]

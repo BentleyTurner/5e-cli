@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"math"
 	"math/rand"
 	"reflect"
 	"sort"
@@ -27,27 +28,55 @@ var colour = func() error {
 	return nil
 }
 
-var weaponEnchant = func() error {
+var weaponAffix = func() error {
 	tags := []string{"weapon"}
-	enchants, err := getEnchants(1, tags)
+	allAffixes, err := fetchAffixes("affix")
 	if err != nil {
 		return err
 	}
 
-	enchant := enchants[0]
-	log.Printf("Weapon enchant\n%s [%s; %s]", enchant.Description, enchant.PointValue, enchant.Upgrade)
+	var a Affix
+	for {
+		a = randSelect(allAffixes)
+		valid := true
+		for _, t := range a.Tags {
+			if !slices.Contains(tags, t) {
+				valid = false
+				break
+			}
+		}
+		if valid {
+			break
+		}
+	}
+
+	log.Printf("Weapon affix\n%s [%s; %s]", processString(a.Description), a.PointValue, a.Upgrade)
 	return nil
 }
 
-var armourEnchant = func() error {
+var armourAffix = func() error {
 	tags := []string{"armour"}
-	enchants, err := getEnchants(1, tags)
+	allAffixes, err := fetchAffixes("affix")
 	if err != nil {
 		return err
 	}
 
-	enchant := enchants[0]
-	log.Printf("Armour enchant\n%s [%s; %s]", enchant.Description, enchant.PointValue, enchant.Upgrade)
+	var a Affix
+	for {
+		a = randSelect(allAffixes)
+		valid := true
+		for _, t := range a.Tags {
+			if !slices.Contains(tags, t) {
+				valid = false
+				break
+			}
+		}
+		if valid {
+			break
+		}
+	}
+
+	log.Printf("Armour affix\n%s [%s; %s]", processString(a.Description), a.PointValue, a.Upgrade)
 	return nil
 }
 
@@ -57,7 +86,7 @@ var glyph = func() error {
 		return err
 	}
 
-	chosen := paths[rand.Intn(len(paths))]
+	chosen := randSelect(paths)
 	tiers := chosen.Tiers
 	t1 := tiers[0]
 	hints := []string{}
@@ -72,7 +101,7 @@ var glyph = func() error {
 
 var upgradeRelic = func() error {
 	log.Println("Upgrade options:")
-	rolls := []int{rand.Intn(4), rand.Intn(4)}
+	rolls := []int{rand.Intn(4), rand.Intn(4), rand.Intn(4)}
 	for _, r := range rolls {
 		if r < 2 {
 			log.Println("- Upgrade existing mod")
@@ -91,30 +120,7 @@ var loot = func() error {
 		return err
 	}
 
-	lootablesP := promptui.Prompt{
-		Label:    "Number of lootable places in room",
-		Validate: validateInt,
-	}
-	lootables, err := lootablesP.Run()
-	if err != nil {
-		return err
-	}
-	lootableCount, err := strconv.Atoi(lootables)
-	if err != nil {
-		return err
-	}
-	lootableMap := map[int]int{}
-	for i := 1; i <= lootableCount; i++ {
-		lootableMap[i] = 0
-	}
-
-	for i := 0; i < rollsFound; i++ {
-		roll := rand.Intn(lootableCount) + 1
-		lootableMap[roll] = lootableMap[roll] + 1
-	}
-	for i := 1; i <= lootableCount; i++ {
-		log.Printf("Lootable %d: %d roll(s)", i, lootableMap[i])
-	}
+	log.Printf("Found %d loot roll(s)", rollsFound)
 	return nil
 }
 
@@ -128,25 +134,14 @@ var harvest = func() error {
 	return nil
 }
 
-var mutation = func() error {
-	mutations, err := fetchMutations()
+var mutate = func() error {
+	mutations, err := fetchGenerics("mutation")
 	if err != nil {
 		return err
 	}
 
-	chosen := mutations[rand.Intn(len(mutations))]
+	chosen := randSelect(mutations)
 	log.Printf("Mutation\n%s: %s", chosen.Name, chosen.Description)
-	return nil
-}
-
-var challenge = func() error {
-	challenges, err := fetchSimpleGenerics("challenge")
-	if err != nil {
-		return err
-	}
-
-	chosen := challenges[rand.Intn(len(challenges))]
-	log.Printf("Challenge: %s", chosen)
 	return nil
 }
 
@@ -217,40 +212,14 @@ var insight = func() error {
 	return nil
 }
 
-var gem = func() error {
-	tagP := promptui.Prompt{
-		Label:    "Soul gem tag",
-		Validate: validateGem,
-	}
-	tag, err := tagP.Run()
-	if err != nil {
-		return err
-	}
-
-	gems, err := fetchGenericEnchants("gem")
-	if err != nil {
-		return err
-	}
-
-	var chosen Enchant
-	for {
-		chosen = gems[rand.Intn(len(gems))]
-		if slices.Contains(chosen.Tags, tag) {
-			log.Printf("Gem affix: %s", processMod(chosen.Description))
-			return nil
-		}
-	}
-}
-
 var craft = func() error {
-	crafts, err := fetchGenericEnchants("craft")
+	allCrafts, err := fetchAffixes("craft")
 	if err != nil {
 		return err
 	}
 
-	chosen := crafts[rand.Intn(len(crafts))]
-	chosen.Description = processMod(chosen.Description)
-	log.Printf("Crafted mod: %s (%spts - %s; %v)", chosen.Description, chosen.PointValue, chosen.Upgrade, chosen.Tags)
+	chosen := randSelect(allCrafts)
+	log.Printf("Crafted affix: %s (%spts - %s; %v)", processString(chosen.Description), chosen.PointValue, chosen.Upgrade, chosen.Tags)
 	return nil
 }
 
@@ -265,21 +234,20 @@ var targetCraft = func() error {
 	}
 
 	affinities := strings.Split(affString, " ")
+	chosenAffinity := randSelect(affinities)
 
-	crafts, err := fetchGenericEnchants("craft")
+	allCrafts, err := fetchAffixes("craft")
 	if err != nil {
 		return err
 	}
 
-	var chosen Enchant
+	var chosen Affix
 	for {
-		chosen = crafts[rand.Intn(len(crafts))]
-		for _, affinity := range affinities {
-			if slices.Contains(chosen.Tags, affinity) {
-				chosen.Description = processMod(chosen.Description)
-				log.Printf("Crafted mod: %s (%spts - %s; %v)", chosen.Description, chosen.PointValue, chosen.Upgrade, chosen.Tags)
-				return nil
-			}
+		chosen = randSelect(allCrafts)
+		if slices.Contains(chosen.Tags, chosenAffinity) {
+			chosen.Description = processString(chosen.Description)
+			log.Printf("Crafted affix: %s (%spts - %s; %v)", chosen.Description, chosen.PointValue, chosen.Upgrade, chosen.Tags)
+			return nil
 		}
 	}
 }
@@ -306,7 +274,7 @@ var dmgUpgrade = func() error {
 	multiplier, _ := strconv.ParseFloat(multiString, 64)
 	currentDmg, _ := strconv.ParseFloat(dmgString, 64)
 	newDmg := currentDmg * multiplier
-	fmt.Printf("New damage dice: %s (if mod-based: %s + 5)", dmgToDice(newDmg), dmgToDice(newDmg-5))
+	fmt.Printf("New damage dice: %s (if mod-based: %s + 5) (average difference: %.0f)", dmgToDice(newDmg), dmgToDice(newDmg-5), math.Floor(newDmg-currentDmg))
 
 	return nil
 }
@@ -319,11 +287,14 @@ var chaos = func() error {
 
 	chaosTrigger := chaos.Trigger[rand.Intn(len(chaos.Trigger))]
 	chaosTarget := chaos.Target[rand.Intn(len(chaos.Target))]
-	log.Printf("Chaotic modifier: %s, cast [https://5e.tools/spells.html#blankhash,flstsubschool:maneuver=2] on %s", processMod(chaosTrigger), chaosTarget)
+	mod := fmt.Sprintf("%s, cast [https://5e.tools/spells.html#blankhash,flstsubschool:maneuver=2] on %s", chaosTrigger, chaosTarget)
+
+	log.Printf("Chaotic modifier: %s", processString(mod))
 	return nil
 }
 
-const FLARE_CHANCE = 10
+// Default chance is 10%
+const FLARE_CHANCE = 11
 
 var combat = func() error {
 	roundMap := map[int][]string{
@@ -355,6 +326,8 @@ var combat = func() error {
 	return nil
 }
 
+var LEGENDARY_CHEST_CHANCE = 15
+
 var travel = func() error {
 	charSlice := make([]string, len(PARTY_MEMBERS))
 	copy(charSlice, PARTY_MEMBERS)
@@ -370,7 +343,7 @@ var travel = func() error {
 
 	hostileRoll := rand.Intn(100)
 	hostile1, hostile2 := -1, -1
-	if hostileRoll < 15 {
+	if hostileRoll < 13 {
 		for hostile1 == hostile2 {
 			hostile1 = rand.Intn(5)
 			hostile2 = rand.Intn(5)
@@ -378,7 +351,7 @@ var travel = func() error {
 	}
 	positiveRoll := rand.Intn(100)
 	positive := -1
-	if positiveRoll < 10 {
+	if positiveRoll < 5 {
 		for positive == -1 || (positive == hostile1 || positive == hostile2) {
 			positive = rand.Intn(5)
 		}
@@ -387,18 +360,23 @@ var travel = func() error {
 	event := 1
 	for i := 0; i < 5; i++ {
 		if i == hostile1 || i == hostile2 {
-			ambush := ""
-			tag := ""
-			if event >= 6 {
-				ambush = " (NIGHT AMBUSH)"
-				tag = "night"
-			}
-			encounter, err := hostileEncounter(tag)
-			if err != nil {
-				return err
-			}
+			legendaryRoll := rand.Intn(100)
+			if legendaryRoll < LEGENDARY_CHEST_CHANCE {
+				log.Printf("%d. Legendary chest!\n", event)
+			} else {
+				ambush := ""
+				tag := ""
+				if event >= 6 {
+					ambush = " (NIGHT AMBUSH)"
+					tag = "night"
+				}
+				encounter, err := hostileEncounter(tag)
+				if err != nil {
+					return err
+				}
 
-			log.Printf("%d. Random encounter%s: %s\n", event, ambush, encounter)
+				log.Printf("%d. Random encounter%s: %s\n", event, ambush, encounter)
+			}
 			event++
 		} else if i == positive {
 			encounter, err := positiveEncounter()
@@ -453,6 +431,84 @@ var journeyActivity = func() error {
 		result = "sub fail"
 	}
 	fmt.Printf("%s result (%s): %s", activity, result, ACTIVITY_RESULTS[activity][result])
+	return nil
+}
+
+var dream = func() error {
+	charP := promptui.Prompt{
+		Label:    "Dreaming character",
+		Validate: validatePartyMember,
+	}
+	char, err := charP.Run()
+	if err != nil {
+		return err
+	}
+
+	pool, err := fetchDreamPool(char)
+	if err != nil {
+		return err
+	}
+	mod := randSelect(pool)
+	fmt.Printf("%s's dream: %s [%s; %s]", char, mod.Description, mod.PointValue, mod.Upgrade)
+	return nil
+}
+
+var perk = func() error {
+	charP := promptui.Prompt{
+		Label:    "Character",
+		Validate: validatePartyMember,
+	}
+	char, err := charP.Run()
+	if err != nil {
+		return err
+	}
+
+	perks, err := fetchPerks(char)
+	if err != nil {
+		return err
+	}
+	option1 := randSelect(perks)
+	option2 := option1
+	for option1 == option2 {
+		option2 = randSelect(perks)
+	}
+	option3 := option2
+	for option3 == option1 || option3 == option2 {
+		option3 = randSelect(perks)
+	}
+
+	fmt.Printf("%s's perk options:\n- %s\n\n- %s\n\n- %s", char, option1, option2, option3)
+	return nil
+}
+
+var mission = func() error {
+	missions, err := fetchSimpleGenerics("mission")
+	if err != nil {
+		return err
+	}
+	fmt.Printf("Mission: %s", randSelect(missions).Description)
+	return nil
+}
+
+var ringUpgrade = func() error {
+	stoneP := promptui.Prompt{
+		Label:    "Ring stone",
+		Validate: validateRingStone,
+	}
+	stone, err := stoneP.Run()
+	if err != nil {
+		return err
+	}
+	bases, err := fetchRingBases()
+	if err != nil {
+		return err
+	}
+	option1, option2 := "", ""
+	for option1 == option2 {
+		option1 = randSelect(bases[stone].Affixes)
+		option2 = randSelect(bases[stone].Affixes)
+	}
+	fmt.Printf("%s ring upgrade options:\n- %s\n- %s", stone, option1, option2)
 	return nil
 }
 
@@ -526,11 +582,6 @@ var activity = func() error {
 	return nil
 }
 
-var tag = func() error {
-	log.Printf("Gem tag: %s", GEM_TAGS[rand.Intn(len(GEM_TAGS))])
-	return nil
-}
-
 var feat = func() error {
 	log.Printf("Feat: %s", FEATS[rand.Intn(len(FEATS))])
 	return nil
@@ -548,5 +599,25 @@ var martialWeapon = func() error {
 
 var language = func() error {
 	log.Printf("Language: %s", LANGUAGES[rand.Intn(len(LANGUAGES))])
+	return nil
+}
+
+var plane = func() error {
+	log.Printf("Plane: %s", PLANES[rand.Intn(len(PLANES))])
+	return nil
+}
+
+var follower = func() error {
+	log.Printf("Follower: %s", randSelect(FOLLOWERS))
+	return nil
+}
+
+var affinity = func() error {
+	log.Printf("Affinity: %s", randSelect(AFFINITIES))
+	return nil
+}
+
+var weaponTrait = func() error {
+	log.Printf("Weapon trait: %s", randSelect(WEAPON_TRAITS))
 	return nil
 }

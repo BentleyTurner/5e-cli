@@ -17,82 +17,27 @@ import (
 
 const DATA_DIR = "data"
 
-func isInt(str string) bool {
-	_, err := strconv.Atoi(str)
-	return err == nil
+func randSelect[S []E, E any](s S) E {
+	return s[rand.Intn(len(s))]
 }
 
-func roundFloat(val float64, precision uint) float64 {
-	ratio := math.Pow(10, float64(precision))
-	return math.Round(val*ratio) / ratio
-}
-
-func fetchTarot(cardIdx int) (Generic, error) {
+func fetchAffixes(fileName string) ([]Affix, error) {
 	cwd, err := os.Getwd()
 	if err != nil {
-		return Generic{}, err
-	}
-
-	f, err := os.ReadFile(filepath.Join(cwd, DATA_DIR, "tarot.json"))
-	if err != nil {
-		return Generic{}, err
-	}
-
-	tarots := []Generic{}
-	err = json.Unmarshal([]byte(f), &tarots)
-	if err != nil {
-		return Generic{}, err
-	}
-
-	return tarots[cardIdx], nil
-}
-
-func getEnchants(num int, tags []string) ([]Enchant, error) {
-	allEnchants, err := fetchEnchants()
-	if err != nil {
-		return []Enchant{}, err
-	}
-
-	var enchants []Enchant
-	for len(enchants) < num {
-		var e Enchant
-		for {
-			e = allEnchants[rand.Intn(len(allEnchants))]
-			valid := true
-			for _, t := range e.Tags {
-				if !slices.Contains(tags, t) {
-					valid = false
-					break
-				}
-			}
-			if valid {
-				break
-			}
-		}
-		e.Description = processMod(e.Description)
-		enchants = append(enchants, e)
-	}
-
-	return enchants, nil
-}
-
-func fetchGenericEnchants(fileName string) ([]Enchant, error) {
-	cwd, err := os.Getwd()
-	if err != nil {
-		return []Enchant{}, err
+		return []Affix{}, err
 	}
 
 	f, err := os.ReadFile(filepath.Join(cwd, DATA_DIR, fileName+".json"))
 	if err != nil {
-		return []Enchant{}, err
+		return []Affix{}, err
 	}
 
-	enchants := []Enchant{}
-	err = json.Unmarshal([]byte(f), &enchants)
+	affixes := []Affix{}
+	err = json.Unmarshal([]byte(f), &affixes)
 	if err != nil {
-		return []Enchant{}, err
+		return []Affix{}, err
 	}
-	return enchants, nil
+	return affixes, nil
 }
 
 func fetchTomes() ([]Tome, error) {
@@ -119,7 +64,7 @@ func positiveEncounter() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return processMod(allEncounters.Positive[rand.Intn(len(allEncounters.Positive))]), nil
+	return processString(randSelect(allEncounters.Positive)), nil
 }
 
 func hostileEncounter(tag string) (string, error) {
@@ -129,7 +74,7 @@ func hostileEncounter(tag string) (string, error) {
 	}
 	var encounter HostileEncounter
 	for true {
-		encounter = allEncounters.Hostile[rand.Intn(len(allEncounters.Hostile))]
+		encounter = randSelect(allEncounters.Hostile)
 		if tag != "" {
 			if slices.Contains(encounter.Tags, tag) {
 				break
@@ -187,100 +132,30 @@ func generateWeather() (string, error) {
 
 	weatherRoll := rand.Intn(100)
 	if weatherRoll < 5 {
-		chosen := weathers.Exotic[rand.Intn(len(weathers.Exotic))]
-		return fmt.Sprintf("%s (+2 minimum hostile random encounters [before %d and %d]. At least one must be a combat. %s)", chosen.Name, rand.Intn(5)+1, rand.Intn(5)+1, chosen.Description), nil
+		chosen := randSelect(weathers.Exotic)
+		return fmt.Sprintf("%s (+2 minimum hostile random encounters [before %d and %d]. At least one must be a combat. %s)", chosen.Name, rand.Intn(5)+1, rand.Intn(5)+1, processString(chosen.Description)), nil
 	}
-	chosen := weathers.Common[rand.Intn(len(weathers.Common))]
+	chosen := randSelect(weathers.Common)
 	return chosen, nil
 }
 
-func fetchWondrous(rarity string) ([]Generic, error) {
+func fetchRingBases() (map[string]RingBase, error) {
 	cwd, err := os.Getwd()
 	if err != nil {
-		return []Generic{}, err
-	}
-
-	f, err := os.ReadFile(filepath.Join(cwd, DATA_DIR, "wondrous.json"))
-	if err != nil {
-		return []Generic{}, err
-	}
-
-	wondrous := Wondrous{}
-	err = json.Unmarshal([]byte(f), &wondrous)
-	if err != nil {
-		return []Generic{}, err
-	}
-
-	var ret []Generic
-	switch rarity {
-	case "common":
-		ret = wondrous.Common
-	case "uncommon":
-		ret = wondrous.Uncommon
-	case "rare":
-		ret = wondrous.Rare
-	case "very rare":
-		ret = wondrous.VeryRare
-	case "legendary":
-		ret = wondrous.Legendary
-	default:
-		return []Generic{}, fmt.Errorf("invalid wondrous item rarity: %s", rarity)
-	}
-	return ret, nil
-}
-
-func fetchRings(rarity string) ([]Ring, error) {
-	cwd, err := os.Getwd()
-	if err != nil {
-		return []Ring{}, err
+		return map[string]RingBase{}, err
 	}
 
 	f, err := os.ReadFile(filepath.Join(cwd, DATA_DIR, "ring.json"))
 	if err != nil {
-		return []Ring{}, err
+		return map[string]RingBase{}, err
 	}
 
-	rings := Rings{}
-	err = json.Unmarshal([]byte(f), &rings)
+	bases := map[string]RingBase{}
+	err = json.Unmarshal([]byte(f), &bases)
 	if err != nil {
-		return []Ring{}, err
+		return map[string]RingBase{}, err
 	}
-
-	var ret []Ring
-	switch rarity {
-	case "uncommon":
-		ret = rings.Uncommon
-	case "rare":
-		ret = rings.Rare
-	case "very rare":
-		ret = rings.VeryRare
-	case "legendary":
-		ret = rings.Legendary
-	case "artifact":
-		ret = rings.Artifact
-	default:
-		return []Ring{}, fmt.Errorf("invalid ring rarity: %s", rarity)
-	}
-	return ret, nil
-}
-
-func fetchEnchants() ([]Enchant, error) {
-	cwd, err := os.Getwd()
-	if err != nil {
-		return []Enchant{}, err
-	}
-
-	f, err := os.ReadFile(filepath.Join(cwd, DATA_DIR, "enchant.json"))
-	if err != nil {
-		return []Enchant{}, err
-	}
-
-	enchants := []Enchant{}
-	err = json.Unmarshal([]byte(f), &enchants)
-	if err != nil {
-		return []Enchant{}, err
-	}
-	return enchants, nil
+	return bases, nil
 }
 
 func fetchAmulets() ([]AmuletSet, error) {
@@ -359,25 +234,6 @@ func fetchRelics() (Relics, error) {
 	return relics, nil
 }
 
-func fetchBodies() (Bodies, error) {
-	cwd, err := os.Getwd()
-	if err != nil {
-		return Bodies{}, err
-	}
-
-	f, err := os.ReadFile(filepath.Join(cwd, DATA_DIR, "body.json"))
-	if err != nil {
-		return Bodies{}, err
-	}
-
-	bodies := Bodies{}
-	err = json.Unmarshal([]byte(f), &bodies)
-	if err != nil {
-		return Bodies{}, err
-	}
-	return bodies, nil
-}
-
 func fetchGenerics(fileName string) ([]Generic, error) {
 	cwd, err := os.Getwd()
 	if err != nil {
@@ -416,44 +272,42 @@ func fetchChaos() (Chaos, error) {
 	return chaos, nil
 }
 
-func fetchMutations() ([]Generic, error) {
+func fetchDreamPool(char string) ([]Affix, error) {
 	cwd, err := os.Getwd()
 	if err != nil {
-		return []Generic{}, err
+		return []Affix{}, err
 	}
 
-	f, err := os.ReadFile(filepath.Join(cwd, DATA_DIR, "mutation.json"))
+	f, err := os.ReadFile(filepath.Join(cwd, DATA_DIR, "dreamPool.json"))
 	if err != nil {
-		return []Generic{}, err
+		return []Affix{}, err
 	}
 
-	mutations := Mutation{}
-	err = json.Unmarshal([]byte(f), &mutations)
+	pools := map[string][]Affix{}
+	err = json.Unmarshal([]byte(f), &pools)
 	if err != nil {
-		return []Generic{}, err
+		return []Affix{}, err
 	}
+	return pools[char], nil
+}
 
-	typeP := promptui.Prompt{
-		Label:    "Mutation type",
-		Validate: validateMutationType,
-	}
-	mutationType, err := typeP.Run()
+func fetchPerks(char string) ([]string, error) {
+	cwd, err := os.Getwd()
 	if err != nil {
-		return []Generic{}, err
+		return []string{}, err
 	}
 
-	var mutationSlice []Generic
-	switch mutationType {
-	case "powerful":
-		mutationSlice = mutations.Powerful
-	case "beneficial":
-		mutationSlice = mutations.Beneficial
-	case "distinctive":
-		mutationSlice = mutations.Distinctive
-	case "harmful":
-		mutationSlice = mutations.Harmful
+	f, err := os.ReadFile(filepath.Join(cwd, DATA_DIR, "perk.json"))
+	if err != nil {
+		return []string{}, err
 	}
-	return mutationSlice, nil
+
+	perks := map[string][]string{}
+	err = json.Unmarshal([]byte(f), &perks)
+	if err != nil {
+		return []string{}, err
+	}
+	return perks[char], nil
 }
 
 func getLootSearchResults(skill string) (int, error) {
@@ -483,7 +337,7 @@ func getLootSearchResults(skill string) (int, error) {
 		return 0, nil
 	}
 
-	return int(math.Floor(float64(totalResult-(13*playerCount))/float64(2*playerCount)) + 1), nil
+	return int(math.Floor(float64(totalResult-(13*playerCount))/float64(2.5*float64(playerCount))) + 1), nil
 }
 
 var DIE_SIZES []float64 = []float64{2.5, 3.5, 4.5, 5.5, 6.5}

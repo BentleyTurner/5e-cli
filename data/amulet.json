@@ -159,7 +159,7 @@
           },
           {
             "ally": "Mother",
-            "effect": "-2 incoming healing on odd turns, +4 incoming healing on even turns",
+            "effect": "-2 incoming healing on odd rounds, +4 incoming healing on even rounds",
             "upgrade": "-2 and +4"
           },
           {
@@ -186,7 +186,7 @@
           },
           {
             "ally": "Mother",
-            "effect": "-2 to saves vs ongoing debuffs on odd turns, +4 to saves vs ongoing debuffs on even turns",
+            "effect": "-2 to saves vs ongoing debuffs on odd rounds, +4 to saves vs ongoing debuffs on even rounds",
             "upgrade": "-2 and +4"
           },
           {
@@ -213,7 +213,7 @@
           },
           {
             "ally": "Mother",
-            "effect": "when downed on an odd turn, -3 global dmg until LR; when downed on an even turn, +6 global dmg until LR",
+            "effect": "when downed on an odd round, -3 global dmg until LR; when downed on an even round, +6 global dmg until LR",
             "upgrade": "-3 and +6"
           },
           {
@@ -225,27 +225,27 @@
       },
       {
         "name": "Mother's Sentience",
-        "effect": "-3 global dmg on odd turns, +6 global dmg on even turns",
-        "upgrade": "+5 dmg barrier on odd turns",
+        "effect": "-3 global dmg on odd rounds, +6 global dmg on even rounds",
+        "upgrade": "+5 dmg barrier on odd rounds",
         "setBonuses": [
           {
             "ally": "Kher'evo",
-            "effect": "-2 incoming healing on odd turns, +4 incoming healing on even turns",
+            "effect": "-2 incoming healing on odd rounds, +4 incoming healing on even rounds",
             "upgrade": "-2 and +4"
           },
           {
             "ally": "Somnius",
-            "effect": "-2 to saves vs ongoing debuffs on odd turns, +4 to saves vs ongoing debuffs on even turns",
+            "effect": "-2 to saves vs ongoing debuffs on odd rounds, +4 to saves vs ongoing debuffs on even rounds",
             "upgrade": "-2 and +4"
           },
           {
             "ally": "Pherousa",
-            "effect": "when downed on an odd turn, -3 global dmg until LR; when downed on an even turn, +6 global dmg until LR",
+            "effect": "when downed on an odd round, -3 global dmg until LR; when downed on an even round, +6 global dmg until LR",
             "upgrade": "-3 and +6"
           },
           {
             "ally": "The Primordial",
-            "effect": "+2 non-phys dmg taken on odd turns, +4 non-phys res on even turns",
+            "effect": "+2 non-phys dmg taken on odd rounds, +4 non-phys res on even rounds",
             "upgrade": "+2 and +4"
           }
         ]
@@ -272,7 +272,7 @@
           },
           {
             "ally": "Mother",
-            "effect": "+2 non-phys dmg taken on odd turns, +4 non-phys res on even turns",
+            "effect": "+2 non-phys dmg taken on odd rounds, +4 non-phys res on even rounds",
             "upgrade": "+2 and +4"
           }
         ]
@@ -284,17 +284,17 @@
     "amulets": [
       {
         "name": "Al'akir's Aim",
-        "effect": "at the end of each turn spent not moving, +1 global dmg that stacks until you move",
+        "effect": "at the end of each turn spent not moving, +2 global dmg that stacks until you move",
         "upgrade": "+2 proj dmg",
         "setBonuses": [
           {
             "ally": "Arvewal",
-            "effect": "on hit if you haven't displaced distance since start of your last turn, target gets +3 dmg taken from types your hit deals until your next turn. doesn't stack",
+            "effect": "on hit if you haven't moved since start of your last turn, target gets +3 dmg taken from types your hit deals until your next turn. doesn't stack",
             "upgrade": "-2"
           },
           {
             "ally": "The Rhox",
-            "effect": "if you haven't displaced distance since start of your last turn, +2 global dmg vs prone targets",
+            "effect": "if you haven't moved since start of your last turn, +2 global dmg vs prone targets",
             "upgrade": "+2"
           },
           {
@@ -343,7 +343,7 @@
         "setBonuses": [
           {
             "ally": "Al'akir",
-            "effect": "if you haven't displaced distance since start of your last turn, +2 global dmg vs prone targets",
+            "effect": "if you haven't moved since start of your last turn, +2 global dmg vs prone targets",
             "upgrade": "+2"
           },
           {
@@ -365,7 +365,7 @@
       },
       {
         "name": "Lucius' Corruption",
-        "effect": "gain a powerful mutation for every 5 glyphs you have consumed",
+        "effect": "gain a mutation for every 3 glyphs you have consumed",
         "upgrade": "+2 glyphic dmg",
         "setBonuses": [
           {
@@ -392,7 +392,7 @@
       },
       {
         "name": "Rhombur's Defiance",
-        "effect": "+5 dmg barrier with 2+ adj foes",
+        "effect": "+12 dmg barrier while you have 2+ adj foes",
         "upgrade": "unintelligent creatures are much more likely to target you",
         "setBonuses": [
           {
@@ -402,7 +402,7 @@
           },
           {
             "ally": "Arvewal",
-            "effect": "+5 dmg barrier with 2+ adj allies",
+            "effect": "+5 dmg barrier while you have 2+ adj allies",
             "upgrade": "+4"
           },
           {
@@ -621,18 +621,18 @@
     "amulets": [
       {
         "name": "Aurifex's Craft",
-        "effect": "+3 item proc dmg",
+        "effect": "+12 crystal dmg",
         "upgrade": "+2 to crafting creation checks",
         "setBonuses": [
           {
             "ally": "Nixaar",
-            "effect": "on dealing item proc dmg, -2 item proc dmg and +2 to all other dmg until the end of your next turn",
-            "upgrade": "-2 and +2"
+            "effect": "on crystal flare, -12 crystal dmg and +1 global dmg until after your next crystal flare",
+            "upgrade": "-12 and +1"
           },
           {
             "ally": "Treefish",
-            "effect": "+3 item proc dmg vs targets smaller than you",
-            "upgrade": "+2"
+            "effect": "+16 crystal dmg vs targets smaller than you",
+            "upgrade": "+16"
           },
           {
             "ally": "Librus",
@@ -641,8 +641,8 @@
           },
           {
             "ally": "Jarrik, Samurai",
-            "effect": "+3 dmg with adv item proc atks",
-            "upgrade": "+2"
+            "effect": "+16 dmg with adv crystal atks",
+            "upgrade": "+16"
           }
         ]
       },
@@ -653,8 +653,8 @@
         "setBonuses": [
           {
             "ally": "Aurifex",
-            "effect": "on dealing item proc dmg, -2 item proc dmg and +2 to all other dmg until the end of your next turn",
-            "upgrade": "-2 and +2"
+            "effect": "on crystal flare, -12 crystal dmg and +1 global dmg until after your next crystal flare",
+            "upgrade": "-12 and +1"
           },
           {
             "ally": "Treefish",
@@ -680,8 +680,8 @@
         "setBonuses": [
           {
             "ally": "Aurifex",
-            "effect": "+3 item proc dmg vs targets smaller than you",
-            "upgrade": "+2"
+            "effect": "+16 crystal dmg vs targets smaller than you",
+            "upgrade": "+16"
           },
           {
             "ally": "Nixaar",
@@ -734,8 +734,8 @@
         "setBonuses": [
           {
             "ally": "Aurifex",
-            "effect": "+3 dmg with adv item proc atks",
-            "upgrade": "+2"
+            "effect": "+16 dmg with adv crystal atks",
+            "upgrade": "+16"
           },
           {
             "ally": "Nixaar",
@@ -771,7 +771,7 @@
           },
           {
             "ally": "Kashana",
-            "effect": "foes within 5' of you are cursed with -1 global dmg while your pants and boots are relics",
+            "effect": "foes within 5' of you are cursed with -1 global dmg while your body armour and boots are relics",
             "upgrade": "-1"
           },
           {
@@ -810,7 +810,7 @@
         "setBonuses": [
           {
             "ally": "Cherry",
-            "effect": "foes within 5' of you are cursed with -1 global dmg while your pants and boots are relics",
+            "effect": "foes within 5' of you are cursed with -1 global dmg while your body armour and boots are relics",
             "upgrade": "-1"
           },
           {
@@ -1002,7 +1002,7 @@
       {
         "name": "Godworms' Drive",
         "effect": "1/SR, on hit, dominate target until end of their next turn",
-        "upgrade": "creatures dominated by you have +2 dmg taken",
+        "upgrade": "creatures dominated by you have +1 dmg taken",
         "setBonuses": [
           {
             "ally": "Kreon",
@@ -1021,8 +1021,8 @@
           },
           {
             "ally": "Trauma Demon",
-            "effect": "-5 max HP; creatures dominated by you take 5 thorns dmg from you on hit",
-            "upgrade": "-4 and +5"
+            "effect": "-5 max HP; creatures dominated by you take 7 thorns dmg from you on hit",
+            "upgrade": "-5 and +7"
           }
         ]
       },
@@ -1070,7 +1070,7 @@
           },
           {
             "ally": "Godworms",
-            "effect": "-5 max HP; creatures debuffed by you take 5 thorns dmg from you on hit",
+            "effect": "-5 max HP; creatures dominated by you take 5 thorns dmg from you on hit",
             "upgrade": "+1"
           },
           {
@@ -1124,6 +1124,16 @@
             "ally": "Heath",
             "effect": "+3 decep vs targets native to a different plane from you",
             "upgrade": "+2"
+          },
+          {
+            "ally": "Truvat",
+            "effect": "+2 intimidation while non-trivially pretending to be someone else",
+            "upgrade": "+2"
+          },
+          {
+            "ally": "Varden",
+            "effect": "+2 persuasion when discussing a topic you know more facts about than the target",
+            "upgrade": "+2"
           }
         ]
       },
@@ -1166,6 +1176,16 @@
             "ally": "Heath",
             "effect": "on crit, trigger a Wild Magic Surge",
             "upgrade": "you and allies within 60' of you have +4 dmg barrier vs wild magic surges"
+          },
+          {
+            "ally": "Truvat",
+            "effect": "on crit vs DoT'd target, all their DoTs tick 2 times",
+            "upgrade": "+2"
+          },
+          {
+            "ally": "Varden",
+            "effect": "on crit, grant ally within 60' a d6 ammo die that can be added to a dmg roll this combat",
+            "upgrade": "+2 die size"
           }
         ]
       },
@@ -1208,6 +1228,16 @@
             "ally": "Heath",
             "effect": "when hit while you have temp HP, trigger a Wild Magic Surge",
             "upgrade": "you and allies within 60' of you have +4 dmg barrier vs wild magic surges"
+          },
+          {
+            "ally": "Truvat",
+            "effect": "+2 crit range vs creatures who have dmg'd your temp HP since your last turn",
+            "upgrade": "+2"
+          },
+          {
+            "ally": "Varden",
+            "effect": "when hit while you have temp HP, grant ally within 60' a d8 ammo die that can be added to a dmg roll this combat",
+            "upgrade": "+2 die size"
           }
         ]
       },
@@ -1250,6 +1280,16 @@
             "ally": "Heath",
             "effect": "on becoming bloodied, trigger a Wild Magic Surge",
             "upgrade": "you and allies within 60' of you have +4 dmg barrier vs wild magic surges"
+          },
+          {
+            "ally": "Truvat",
+            "effect": "while bloodied, +2 crit dice",
+            "upgrade": "+2"
+          },
+          {
+            "ally": "Varden",
+            "effect": "on becoming bloodied, grant ally within 60' a d8 ammo die that can be added to a dmg roll this combat",
+            "upgrade": "+2 die size"
           }
         ]
       },
@@ -1292,12 +1332,22 @@
             "ally": "Heath",
             "effect": "on init, generate a random 2pt wep enchant and a random 2pt armour enchant. while healthy, you gain the effects of the wep one, and the armour one while bloodied",
             "upgrade": "+2 and +2"
+          },
+          {
+            "ally": "Truvat",
+            "effect": "while healthy, +1 crit dice; while bloodied, +5 phys barrier",
+            "upgrade": "+2"
+          },
+          {
+            "ally": "Varden",
+            "effect": "while healthy, adj allies have +1 global dmg; while bloodied, adj allies have +3 dmg barrier",
+            "upgrade": "+2 die size"
           }
         ]
       },
       {
         "name": "Surge's Infestation",
-        "effect": "+3 to dmg made as a reaction",
+        "effect": "+4 to dmg made as a reaction",
         "upgrade": "+2 AoE dmg",
         "setBonuses": [
           {
@@ -1334,6 +1384,16 @@
             "ally": "Heath",
             "effect": "on dealing dmg as a reaction, trigger a Wild Magic Surge",
             "upgrade": "you and allies within 60' of you have +4 dmg barrier vs wild magic surges"
+          },
+          {
+            "ally": "Truvat",
+            "effect": "+1 crit range with atks made as a reaction",
+            "upgrade": "+1"
+          },
+          {
+            "ally": "Varden",
+            "effect": "on dealing dmg as a reaction, grant ally within 60' a d4 ammo die that can be added to a dmg roll this combat",
+            "upgrade": "+2 die size"
           }
         ]
       },
@@ -1376,6 +1436,16 @@
             "ally": "Heath",
             "effect": "whenever an adj foe hits a creature other than you, trigger a Wild Magic Surge",
             "upgrade": "you and allies within 60' of you have +4 dmg barrier vs wild magic surges"
+          },
+          {
+            "ally": "Truvat",
+            "effect": "on crit, target has -4 global dmg vs non-you targets until end of their next turn",
+            "upgrade": "+2"
+          },
+          {
+            "ally": "Varden",
+            "effect": "whenever an adj foe hits a creature other than you, grant ally within 60' a d8 ammo die that can be added to a dmg roll this combat",
+            "upgrade": "+2 die size"
           }
         ]
       },
@@ -1418,6 +1488,120 @@
             "ally": "Petros",
             "effect": "whenever an adj foe hits a creature other than you, trigger a Wild Magic Surge",
             "upgrade": "you and allies within 60' of you have +4 dmg barrier vs Wild Magic Surges"
+          },
+          {
+            "ally": "Truvat",
+            "effect": "on making 3+ hits in a single turn, trigger a wild magic surge",
+            "upgrade": "you and allies within 60' of you have +4 dmg barrier vs Wild Magic Surges"
+          },
+          {
+            "ally": "Varden",
+            "effect": "on init, a random ally within 60' of you gains a random 2pt wep enchant until end of combat",
+            "upgrade": "+2"
+          }
+        ]
+      },
+      {
+        "name": "Truvat's Escalation",
+        "effect": "on crit, +3 crit dice until the end of the turn",
+        "upgrade": "+5 crit dmg",
+        "setBonuses": [
+          {
+            "ally": "Vidar, Shadow Spy",
+            "effect": "+2 intimidation while non-trivially pretending to be someone else",
+            "upgrade": "+2"
+          },
+          {
+            "ally": "Vidar, Assassin",
+            "effect": "on crit, +1 crit range until the end of the turn",
+            "upgrade": "+1"
+          },
+          {
+            "ally": "Arndell",
+            "effect": "on crit, gain 2 stacking temp HP",
+            "upgrade": "+2"
+          },
+          {
+            "ally": "Morric",
+            "effect": "while bloodied, +2 crit dice",
+            "upgrade": "+2"
+          },
+          {
+            "ally": "Clover",
+            "effect": "while healthy, +1 crit dice; while bloodied, +5 phys barrier",
+            "upgrade": "+1 and +5"
+          },
+          {
+            "ally": "Surge",
+            "effect": "+1 crit range with atks made as a reaction",
+            "upgrade": "+1"
+          },
+          {
+            "ally": "Petros",
+            "effect": "on crit, target has -4 global dmg vs non-you targets until end of their next turn",
+            "upgrade": "-4"
+          },
+          {
+            "ally": "Heath",
+            "effect": "on making 3+ hits in a single turn, trigger a wild magic surge",
+            "upgrade": "you and allies within 60' of you have +4 dmg barrier vs Wild Magic Surges"
+          },
+          {
+            "ally": "Varden",
+            "effect": "on making 3+ hits in a single turn, grant ally within 60' a d4 ammo die that can be added to a dmg roll this combat",
+            "upgrade": "+2 die size"
+          }
+        ]
+      },
+      {
+        "name": "Varden's Invention",
+        "effect": "on init, grant ally within 60' a d10 ammo die that can be added to a dmg roll this combat",
+        "upgrade": "+2 to crafting creation checks",
+        "setBonuses": [
+          {
+            "ally": "Vidar, Shadow Spy",
+            "effect": "+2 persuasion when discussing a topic you know more facts about than the target",
+            "upgrade": "+2"
+          },
+          {
+            "ally": "Vidar, Assassin",
+            "effect": "allies holding your ammo die have +2 crit range and must expend it on crit",
+            "upgrade": "+2"
+          },
+          {
+            "ally": "Arndell",
+            "effect": "whenever an ally expends your ammo die, they gain +3 stackable temp HP",
+            "upgrade": "+2"
+          },
+          {
+            "ally": "Morric",
+            "effect": "whenever a bloodied ally expends your ammo die, the base dmg is increased by 10",
+            "upgrade": "+10"
+          },
+          {
+            "ally": "Clover",
+            "effect": "whenever a healthy ally expends your ammo die, the base dmg is increased by 8; whenever a bloodied ally expends your ammo die, they heal 2 HP",
+            "upgrade": "+8 and +2"
+          },
+          {
+            "ally": "Surge",
+            "effect": "whenever an ally expends your ammo die for dmg made as a reaction, the base dmg is increased by 10",
+            "upgrade": "+10"
+          },
+          {
+            "ally": "Petros",
+            "effect": "whenever an ally expends your ammo die, their target has -8 global dmg vs targets other than that ally until the end of their next turn",
+            "upgrade": "-8"
+          },
+          {
+            "ally": "Heath",
+            "effect": "whenever an ally expends your ammo die, they trigger a Wild Magic Surge",
+            "upgrade": "you and allies within 60' of you have +4 dmg barrier vs Wild Magic Surges"
+          },
+          {
+            "ally": "Truvat",
+            "effect": "whenever an ally expends your ammo die on a crit, it is added 2 additional times",
+            "upgrade": "+2"
           }
         ]
       }
