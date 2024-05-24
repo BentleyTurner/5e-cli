@@ -139,10 +139,11 @@ var DAMAGE_POLARITIES []string = []string{
 }
 
 var PARTY_MEMBERS []string = []string{
-	"Thaddeus",
-	"Zacharias",
-	"Siggusmondo",
-	"Vehemir",
+	"Ede",
+	"Leona",
+	"Amy",
+	"Erica",
+	"Felycia",
 }
 
 var CITIES []string = []string{
@@ -153,10 +154,11 @@ var CITIES []string = []string{
 }
 
 var INSIGHTS map[string]int = map[string]int{
-	"Thaddeus":    9,
-	"Zacharias":   1,
-	"Siggusmondo": 6,
-	"Vehemir":     5,
+	"Ede":    9,
+	"Leona":   1,
+	"Amy": 6,
+	"Felycia":     5,
+	"Erica",
 	"Sidekick":    0,
 }
 
