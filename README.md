@@ -11,23 +11,6 @@ Golang CLI helper for my D&amp;D 5e campaigns
 - Relic: 60gp
 - Enchanted Equipment: 35gp
 
-### Relic level costs (same price - 150)
-
-2. 20
-3. 30
-4. 50
-5. 80
-6. 120
-7. 170
-8. 230
-9. 300
-10. 400
-
-Bentley: 1400
-Adrian: 890
-Dan: 280
-Lawrence: 1400
-
 ### Relic generation
 
 1. 1st base affix
