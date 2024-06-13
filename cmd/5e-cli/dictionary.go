@@ -154,12 +154,12 @@ var CITIES []string = []string{
 }
 
 var INSIGHTS map[string]int = map[string]int{
-	"Ede":    9,
-	"Leona":   1,
-	"Amy": 6,
-	"Felycia":     5,
-	"Erica",
-	"Sidekick":    0,
+	"Ede":      0,
+	"Leona":    0,
+	"Amy":      0,
+	"Felycia":  0,
+	"Erica":    0,
+	"Sidekick": 0,
 }
 
 var LIGHT_TYPES []string = []string{

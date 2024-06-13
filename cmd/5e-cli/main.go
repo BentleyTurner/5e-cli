@@ -2,7 +2,6 @@ package main
 
 import (
 	"log"
-	"math/rand"
 	"os"
 	"sort"
 	"strconv"
@@ -11,19 +10,13 @@ import (
 )
 
 var ROLL_RANGE_CEILINGS = map[int]func() error{
-	11:  func() error { log.Println("Reroll and upgrade result with +1 colour!"); return nil },
-	19:  mediumGold,
-	27:  shrine,
-	35:  func() error { log.Printf("Crystal: %s", CREATURE_TYPES[rand.Intn(len(CREATURE_TYPES))]); return nil },
-	43:  magicItem,
-	51:  tome,
-	59:  amulet,
-	67:  ring,
-	75:  func() error { log.Println("2x Tarot Cards"); return nil },
-	83:  relic,
-	91:  func() error { log.Println("Dream Mirror"); return nil },
-	99:  func() error { log.Println("Glyph"); return nil },
-	100: func() error { log.Println("Player's choice and upgrade result with +1 colour!"); return nil },
+	1: func() error { log.Println("Reroll and upgrade result with +1 colour!"); return nil },
+	2: magicItem,
+	3: shrine,
+	4: amulet,
+	5: ring,
+	7: relic,
+	8: func() error { log.Println("Winds of magic"); return nil },
 }
 
 var COMMAND_MAP = map[string]func() error{
