@@ -1,6 +1,6 @@
 module github.com/lawrence501/5e-cli
 
-go 1.21.5
+go 1.23
 
 require github.com/manifoldco/promptui v0.9.0
 
