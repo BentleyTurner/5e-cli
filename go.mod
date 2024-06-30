@@ -1,6 +1,6 @@
-module github.com/lawrence501/5e-cli
+module github.com/BentleyTurner/5e-cli
 
-go 1.23
+go 1.22
 
 require github.com/manifoldco/promptui v0.9.0
 
